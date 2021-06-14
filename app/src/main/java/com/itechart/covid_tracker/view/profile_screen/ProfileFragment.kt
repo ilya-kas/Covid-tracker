@@ -1,17 +1,13 @@
-package com.itechart.myapplication.view.profile_screen
+package com.itechart.covid_tracker.view.profile_screen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.INVISIBLE
 import android.view.ViewGroup
-import android.widget.GridLayout
 import android.widget.TextView
-import androidx.core.view.children
-import com.itechart.myapplication.R
-import com.itechart.myapplication.presenter.chart.ChartPresenter
-import com.itechart.myapplication.presenter.profile.ProfilePresenter
+import com.itechart.covid_tracker.R
+import com.itechart.covid_tracker.presenter.profile.ProfilePresenter
 
 class ProfileFragment: Fragment() {
     private lateinit var fragment:View

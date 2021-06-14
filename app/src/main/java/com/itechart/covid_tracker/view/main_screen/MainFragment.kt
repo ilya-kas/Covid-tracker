@@ -1,4 +1,4 @@
-package com.itechart.myapplication.view.main_screen
+package com.itechart.covid_tracker.view.main_screen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.itechart.myapplication.R
-import com.itechart.myapplication.presenter.main.MainPresenter
+import com.itechart.covid_tracker.R
+import com.itechart.covid_tracker.presenter.main.MainPresenter
 import kotlin.math.ceil
 
 class MainFragment: Fragment() {
@@ -22,11 +21,11 @@ class MainFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragment = inflater.inflate(R.layout.fragment_main, container, false)
 
-        val recyclerView = fragment.findViewById<RecyclerView>(R.id.rv_list) //list of todo
+        val recyclerView = fragment.findViewById<RecyclerView>(R.id.rv_countries)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = RecyclerAdapter()
 
-        val pagesCount = ceil(MainPresenter.listLength/ITEM_ON_PAGE_COUNT.toDouble()).toInt()
+        val pagesCount = ceil(MainPresenter.listLength/ ITEM_ON_PAGE_COUNT.toDouble()).toInt()
         val ll_paging = fragment.findViewById<LinearLayout>(R.id.ll_paging)
 
         val b_previous = ll_paging.findViewById<ImageButton>(R.id.ib_left) //button "move to previous page"

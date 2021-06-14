@@ -1,6 +1,6 @@
-package com.itechart.myapplication.presenter.chart
+package com.itechart.covid_tracker.presenter.chart
 
-class Item {
+class Day {
     var text = "tmp" //todo tmp
     var shortText = "+t" //todo tmp
 }

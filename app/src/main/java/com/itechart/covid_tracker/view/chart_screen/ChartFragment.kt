@@ -1,4 +1,4 @@
-package com.itechart.myapplication.view.chart_screen
+package com.itechart.covid_tracker.view.chart_screen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.TextView
 import androidx.core.view.children
-import com.itechart.myapplication.R
-import com.itechart.myapplication.presenter.chart.ChartPresenter
+import com.itechart.covid_tracker.R
+import com.itechart.covid_tracker.presenter.chart.ChartPresenter
 
 class ChartFragment: Fragment() {
     private lateinit var fragment:View
@@ -23,14 +23,14 @@ class ChartFragment: Fragment() {
         for (i in -10..-2){
             val view:TextView = iterator.next() as TextView
             if (ChartPresenter.listLength+i>=0) //if there are enough elements
-                view.text = ChartPresenter.list[ChartPresenter.listLength+i].shortText //then set text
+                view.text = ChartPresenter.days[ChartPresenter.listLength+i].shortText //then set text
             else
                 view.visibility = INVISIBLE //else hide
         }
 
         val view:TextView = iterator.next() as TextView //last, long item
         if (ChartPresenter.listLength>0)
-            view.text = ChartPresenter.list[ChartPresenter.listLength-1].text
+            view.text = ChartPresenter.days[ChartPresenter.listLength-1].text
         else
             view.visibility = INVISIBLE //else hide
 
@@ -43,4 +43,5 @@ class ChartFragment: Fragment() {
             return ChartFragment()
         }
     }
-}
+} //todo номер через bundle
+//todo не object presenter

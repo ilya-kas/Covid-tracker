@@ -1,6 +1,6 @@
-package com.itechart.myapplication.presenter.profile
+package com.itechart.covid_tracker.presenter.profile
 
-import com.itechart.myapplication.model.Model
+import com.itechart.covid_tracker.model.Model
 
 object ProfilePresenter {
     var user = Model.loadUser()

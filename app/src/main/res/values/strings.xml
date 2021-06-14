@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Application</string>
+    <string name="app_name">Covid tracker</string>
     <string name="main">Main</string>
     <string name="profile">Profile</string>
     <string name="settings">Settings</string>

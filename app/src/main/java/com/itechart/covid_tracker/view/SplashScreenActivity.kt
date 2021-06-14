@@ -1,4 +1,4 @@
-package com.itechart.myapplication.view
+package com.itechart.covid_tracker.view
 
 import android.content.Intent
 import android.os.Bundle

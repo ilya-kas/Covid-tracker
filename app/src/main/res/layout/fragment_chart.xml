@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     style="@style/BodyStyle"
-    tools:context=".view.chart_screen.ChartFragment">
+    tools:context="com.itechart.covid_tracker.view.chart_screen.ChartFragment">
 
     <!--Chart label -->
     <TextView
@@ -14,7 +14,7 @@
         android:layout_marginVertical="15dp"
         android:layout_gravity="center"
         style="@style/BodyStyle"
-        android:textSize="50sp"
+        android:textSize="@dimen/top_label_size"
         android:text="@string/chart"/>
 
     <!--Dots-->
@@ -45,13 +45,13 @@
             android:scaleType="fitXY"/>
     </LinearLayout>
 
-    <!--Previous items todo rename-->
+    <!--Previous days-->
     <GridLayout
         android:id="@+id/grid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:columnCount="3">
 
         <TextView

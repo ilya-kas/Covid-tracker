@@ -1,4 +1,4 @@
-package com.itechart.myapplication.presenter.profile
+package com.itechart.covid_tracker.presenter.profile
 
 class User {
     var login = "noname"

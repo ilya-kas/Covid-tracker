@@ -1,12 +1,12 @@
-package com.itechart.myapplication.view
+package com.itechart.covid_tracker.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.navigationrail.NavigationRailView
-import com.itechart.myapplication.R
-import com.itechart.myapplication.presenter.main.MainPresenter
-import com.itechart.myapplication.view.main_screen.MainFragment
-import com.itechart.myapplication.view.profile_screen.ProfileFragment
+import com.itechart.covid_tracker.R
+import com.itechart.covid_tracker.presenter.main.MainPresenter
+import com.itechart.covid_tracker.view.main_screen.MainFragment
+import com.itechart.covid_tracker.view.profile_screen.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

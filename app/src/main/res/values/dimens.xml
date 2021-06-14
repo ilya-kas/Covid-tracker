@@ -4,4 +4,5 @@
     <dimen name="dot_size">40dp</dimen>
     <dimen name="grid_item_size">80dp</dimen>
     <dimen name="grid_item_margin">10dp</dimen>
+    <dimen name="top_label_size">40sp</dimen>
 </resources>

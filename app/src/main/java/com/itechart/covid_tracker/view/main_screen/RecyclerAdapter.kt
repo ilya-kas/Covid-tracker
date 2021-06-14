@@ -1,4 +1,4 @@
-package com.itechart.myapplication.view.main_screen
+package com.itechart.covid_tracker.view.main_screen
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.itechart.myapplication.R
-import com.itechart.myapplication.presenter.main.MainPresenter
-import com.itechart.myapplication.view.chart_screen.ChartFragment
+import com.itechart.covid_tracker.R
+import com.itechart.covid_tracker.presenter.main.MainPresenter
+import com.itechart.covid_tracker.view.chart_screen.ChartFragment
 
 const val ITEM_ON_PAGE_COUNT = 10
 
@@ -34,17 +34,17 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.LineViewHolder>(){
 
     //filling line views
     override fun onBindViewHolder(holder: LineViewHolder, position: Int) {
-        val realPosition = position + offset*ITEM_ON_PAGE_COUNT
-        val item = MainPresenter.list[realPosition] //todo rename
+        val realPosition = position + offset* ITEM_ON_PAGE_COUNT
+        val day = MainPresenter.countries[realPosition]
 
-        holder.ib_favorite.setImageResource(if (item.favorite) R.drawable.star_filled else R.drawable.star_empty) //favorites
+        holder.ib_favorite.setImageResource(if (day.favorite) R.drawable.star_filled else R.drawable.star_empty) //favorites
         holder.ib_favorite.setOnClickListener {
             MainPresenter.starred(realPosition)
-            holder.ib_favorite.setImageResource(if (item.favorite) R.drawable.star_filled else R.drawable.star_empty)
+            holder.ib_favorite.setImageResource(if (day.favorite) R.drawable.star_filled else R.drawable.star_empty)
         }
 
         val tv_label = holder.line.findViewById<TextView>(R.id.tv_label)
-        tv_label.text = MainPresenter.list[realPosition].name
+        tv_label.text = MainPresenter.countries[realPosition].name
 
         holder.line.setOnClickListener { //to open chart
             MainPresenter.fragmentManager
@@ -55,7 +55,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.LineViewHolder>(){
         }
     }
 
-    override fun getItemCount() = (MainPresenter.listLength- offset*ITEM_ON_PAGE_COUNT).coerceAtMost(ITEM_ON_PAGE_COUNT)
+    override fun getItemCount() = (MainPresenter.listLength- offset* ITEM_ON_PAGE_COUNT).coerceAtMost(ITEM_ON_PAGE_COUNT)
 
     /**
      * set viewing page.
@@ -67,4 +67,4 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.LineViewHolder>(){
         offset = newOffset
         notifyDataSetChanged()
     }
-}
+}//todo нажатия передавать в фрагмент
