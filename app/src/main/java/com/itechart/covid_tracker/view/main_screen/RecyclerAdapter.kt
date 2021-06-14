@@ -12,7 +12,7 @@ import com.itechart.covid_tracker.view.chart_screen.ChartFragment
 
 const val ITEM_ON_PAGE_COUNT = 10
 
-class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.LineViewHolder>(){
+class RecyclerAdapter(private val fragment: MainFragment, val presenter: MainPresenter) : RecyclerView.Adapter<RecyclerAdapter.LineViewHolder>(){
     var offset = 0
     private set
 
@@ -35,36 +35,32 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.LineViewHolder>(){
     //filling line views
     override fun onBindViewHolder(holder: LineViewHolder, position: Int) {
         val realPosition = position + offset* ITEM_ON_PAGE_COUNT
-        val day = MainPresenter.countries[realPosition]
+        val day = presenter.countries[realPosition]
 
         holder.ib_favorite.setImageResource(if (day.favorite) R.drawable.star_filled else R.drawable.star_empty) //favorites
         holder.ib_favorite.setOnClickListener {
-            MainPresenter.starred(realPosition)
+            presenter.starred(realPosition)
             holder.ib_favorite.setImageResource(if (day.favorite) R.drawable.star_filled else R.drawable.star_empty)
         }
 
         val tv_label = holder.line.findViewById<TextView>(R.id.tv_label)
-        tv_label.text = MainPresenter.countries[realPosition].name
+        tv_label.text = presenter.countries[realPosition].name
 
         holder.line.setOnClickListener { //to open chart
-            MainPresenter.fragmentManager
-                .beginTransaction()
-                .replace(R.id.fragment_container, ChartFragment.newInstance(realPosition))
-                .addToBackStack("chart")
-                .commit()
+            fragment.lineItemPressed(realPosition)
         }
     }
 
-    override fun getItemCount() = (MainPresenter.listLength- offset* ITEM_ON_PAGE_COUNT).coerceAtMost(ITEM_ON_PAGE_COUNT)
+    override fun getItemCount() = (presenter.listLength- offset* ITEM_ON_PAGE_COUNT).coerceAtMost(ITEM_ON_PAGE_COUNT)
 
     /**
      * set viewing page.
      * measures: [0, MainPresenter.getListLength() / ITEM_ON_PAGE_COUNT]
      */
     fun setPage(nom: Int){
-        val newOffset = nom.coerceAtMost(MainPresenter.listLength / ITEM_ON_PAGE_COUNT).coerceAtLeast(0)
+        val newOffset = nom.coerceAtMost(presenter.listLength / ITEM_ON_PAGE_COUNT).coerceAtLeast(0)
         if (newOffset==offset) return
         offset = newOffset
         notifyDataSetChanged()
     }
-}//todo нажатия передавать в фрагмент
+}

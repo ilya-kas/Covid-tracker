@@ -2,7 +2,7 @@ package com.itechart.covid_tracker.presenter.profile
 
 import com.itechart.covid_tracker.model.Model
 
-object ProfilePresenter {
+class ProfilePresenter {
     var user = Model.loadUser()
 
     fun updateUserInfo(){

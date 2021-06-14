@@ -2,7 +2,7 @@
 <resources>
     <color name="main">#002050</color>
     <color name="alt">#FFFF00</color>
-    <color name="addiction">#00BBBB</color>
+    <color name="addiction">#FF0000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="almostWhite">#EAEAEA</color>

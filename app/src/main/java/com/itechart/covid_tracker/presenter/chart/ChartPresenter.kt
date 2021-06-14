@@ -8,7 +8,7 @@ object ChartPresenter {
             field = value
             days = Model.loadItems(value)
         }
-    lateinit var days: ArrayList<Day>//todo rename
+    lateinit var days: ArrayList<Day>
     val listLength
         get() = days.size
 }

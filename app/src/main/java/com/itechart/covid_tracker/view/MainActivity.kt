@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        MainPresenter.fragmentManager = supportFragmentManager
 
         val menu = findViewById<NavigationRailView>(R.id.navigation_rail)
         menu.setOnItemSelectedListener{ item ->

@@ -1,5 +1,6 @@
 package com.itechart.covid_tracker.view.chart_screen
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,16 +23,25 @@ class ChartFragment: Fragment() {
         val iterator = grid.children.iterator()
         for (i in -10..-2){
             val view:TextView = iterator.next() as TextView
-            if (ChartPresenter.listLength+i>=0) //if there are enough elements
-                view.text = ChartPresenter.days[ChartPresenter.listLength+i].shortText //then set text
+            if (ChartPresenter.listLength+i>=0) { //if there are enough elements
+                view.text = ChartPresenter.days[ChartPresenter.listLength + i].shortText //then set text
+                if (view.text.startsWith("-"))
+                    view.setTextColor(Color.parseColor("#00FF00"))
+                else
+                    view.setTextColor(Color.parseColor("#FF0000"))
+            }
             else
                 view.visibility = INVISIBLE //else hide
         }
 
         val view:TextView = iterator.next() as TextView //last, long item
-        if (ChartPresenter.listLength>0)
-            view.text = ChartPresenter.days[ChartPresenter.listLength-1].text
-        else
+        if (ChartPresenter.listLength>0) {
+            view.text = ChartPresenter.days[ChartPresenter.listLength - 1].text
+            if (ChartPresenter.days[ChartPresenter.listLength - 1].count <= 0)
+                view.setTextColor(Color.parseColor("#00FF00"))
+            else
+                view.setTextColor(Color.parseColor("#FF0000"))
+        }else
             view.visibility = INVISIBLE //else hide
 
         return fragment

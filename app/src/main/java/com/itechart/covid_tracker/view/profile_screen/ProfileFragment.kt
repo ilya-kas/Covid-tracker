@@ -11,32 +11,34 @@ import com.itechart.covid_tracker.presenter.profile.ProfilePresenter
 
 class ProfileFragment: Fragment() {
     private lateinit var fragment:View
+    private lateinit var presenter: ProfilePresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragment = inflater.inflate(R.layout.fragment_profile, container, false)
+        presenter = ProfilePresenter()
+        presenter.updateUserInfo()
 
         val topLabel = fragment.findViewById<TextView>(R.id.top_label)
-        topLabel.text = (ProfilePresenter.user.name + " " + ProfilePresenter.user.surname)
+        topLabel.text = (presenter.user.name + " " + presenter.user.surname)
 
         val tv_login = fragment.findViewById<TextView>(R.id.tv_login)
-        tv_login.text = ("Login: " + ProfilePresenter.user.login)
+        tv_login.text = ("Login: " + presenter.user.login)
         val tv_password = fragment.findViewById<TextView>(R.id.tv_password)
-        tv_password.text = ("Password: " + ProfilePresenter.user.password)
+        tv_password.text = ("Password: " + presenter.user.password)
         val tv_email = fragment.findViewById<TextView>(R.id.tv_email)
-        tv_email.text = ("Email: " + ProfilePresenter.user.email)
+        tv_email.text = ("Email: " + presenter.user.email)
         val tv_number = fragment.findViewById<TextView>(R.id.tv_number)
-        tv_number.text = ("Number: " + ProfilePresenter.user.number)
+        tv_number.text = ("Number: " + presenter.user.number)
         val tv_index = fragment.findViewById<TextView>(R.id.tv_index)
-        tv_index.text = ("Index: " + ProfilePresenter.user.index)
+        tv_index.text = ("Index: " + presenter.user.index)
         val tv_address = fragment.findViewById<TextView>(R.id.tv_address)
-        tv_address.text = ("Address: " + ProfilePresenter.user.address)
+        tv_address.text = ("Address: " + presenter.user.address)
 
         return fragment
     }
 
     companion object{
         fun newInstance(): Fragment {
-            ProfilePresenter.updateUserInfo()
             return ProfileFragment()
         }
     }
