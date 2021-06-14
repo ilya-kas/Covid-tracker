@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/BodyStyle"
+    tools:context=".view.chart_screen.ChartFragment">
+
+    <!--Profile label -->
+    <TextView
+        android:id="@+id/top_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="15dp"
+        android:layout_gravity="center"
+        style="@style/BodyStyle"
+        android:textSize="50sp"
+        android:text="Profile"/>
+
+    <!--User info-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingBottom="90dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="30dp"
+            android:layout_gravity="center"
+            android:foreground="@drawable/border">
+
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfileTextStyle"
+                android:text="Login: login"/>
+
+            <TextView
+                android:id="@+id/tv_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfileTextStyle"
+                android:text="Password: password"/>
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfileTextStyle"
+                android:text="Email: email"/>
+
+            <TextView
+                android:id="@+id/tv_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfileTextStyle"
+                android:text="Number: number"/>
+
+            <TextView
+                android:id="@+id/tv_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfileTextStyle"
+                android:text="Index: index"/>
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/ProfileTextStyle"
+                android:text="Address: address"/>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

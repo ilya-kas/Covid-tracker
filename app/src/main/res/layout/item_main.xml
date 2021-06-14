@@ -7,10 +7,15 @@
     style="@style/RoundedItem">
 
     <TextView
-        android:id="@+id/label"
+        android:id="@+id/tv_label"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:paddingTop="4dp"
+        android:paddingStart="10dp"
+        android:textColor="@color/main"
+        android:textSize="30sp"
+        android:text="Example"
         android:background="@drawable/rounded_item"/>
 
     <ImageButton

@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="BodyStyle" parent="@style/Theme.Design.NoActionBar">
+    <style name="BodyStyle" parent="@style/Theme.MaterialComponents.NoActionBar">
         <item name="android:textColor">@color/alt</item>
         <item name="android:background">@color/addiction</item>
     </style>
 
+    <style name="NavigationBarStyle" parent="@style/Widget.MaterialComponents.NavigationRailView">
+        <item name="itemTextColor">@color/alt</item>
+        <item name="android:background">@color/main</item>
+    </style>
+
     <style name="RoundedItem">
-        <item name="android:layout_marginStart">40dp</item>
-        <item name="android:layout_marginEnd">40dp</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:background">@drawable/rounded_item</item>
+    </style>
+
+    <style name="SplashScreenTheme" parent = "Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen_background</item>
+    </style>
+
+    <style name="ProfileTextStyle">
+        <item name="android:textColor">@color/main</item>
+        <item name="android:textSize">15sp</item>
     </style>
 </resources>

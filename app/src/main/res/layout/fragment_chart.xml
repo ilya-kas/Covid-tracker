@@ -1,14 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ChartFragment">
+    android:orientation="vertical"
+    style="@style/BodyStyle"
+    tools:context=".view.chart_screen.ChartFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!--Chart label -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Chart fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="15dp"
+        android:layout_gravity="center"
+        style="@style/BodyStyle"
+        android:textSize="50sp"
+        android:text="@string/chart"/>
 
-</FrameLayout>
+    <!--Dots-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dot_size"
+            android:layout_height="@dimen/dot_size"
+            android:src="@drawable/dot"
+            android:scaleType="fitXY"/>
+
+        <ImageView
+            android:layout_width="@dimen/dot_size"
+            android:layout_height="@dimen/dot_size"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/dot"
+            android:scaleType="fitXY"/>
+
+        <ImageView
+            android:layout_width="@dimen/dot_size"
+            android:layout_height="@dimen/dot_size"
+            android:src="@drawable/dot"
+            android:scaleType="fitXY"/>
+    </LinearLayout>
+
+    <!--Previous items todo rename-->
+    <GridLayout
+        android:id="@+id/grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:columnCount="3">
+
+        <TextView
+            android:layout_width="@dimen/grid_item_size"
+            android:layout_height="@dimen/grid_item_size"
+            android:layout_margin="@dimen/grid_item_margin"
+            android:textColor="@color/main"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:background="@drawable/rounded_item"/>
+
+        <TextView
+            android:layout_width="@dimen/grid_item_size"
+            android:layout_height="@dimen/grid_item_size"
+            android:layout_margin="@dimen/grid_item_margin"
+            android:textColor="@color/main"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:background="@drawable/rounded_item"/>
+
+        <TextView
+            android:layout_width="@dimen/grid_item_size"
+            android:layout_height="@dimen/grid_item_size"
+            android:layout_margin="@dimen/grid_item_margin"
+            android:textColor="@color/main"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:background="@drawable/rounded_item"/>
+
+        <TextView
+            android:layout_width="@dimen/grid_item_size"
+            android:layout_height="@dimen/grid_item_size"
+            android:layout_margin="@dimen/grid_item_margin"
+            android:textColor="@color/main"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:background="@drawable/rounded_item"/>
+
+        <TextView
+            android:layout_width="@dimen/grid_item_size"
+            android:layout_height="@dimen/grid_item_size"
+            android:layout_margin="@dimen/grid_item_margin"
+            android:textColor="@color/main"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:background="@drawable/rounded_item"/>
+
+        <TextView
+            android:layout_width="@dimen/grid_item_size"
+            android:layout_height="@dimen/grid_item_size"
+            android:layout_margin="@dimen/grid_item_margin"
+            android:textColor="@color/main"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:background="@drawable/rounded_item"/>
+
+        <TextView
+            android:layout_width="@dimen/grid_item_size"
+            android:layout_height="@dimen/grid_item_size"
+            android:layout_margin="@dimen/grid_item_margin"
+            android:textColor="@color/main"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:background="@drawable/rounded_item"/>
+
+        <TextView
+            android:layout_width="@dimen/grid_item_size"
+            android:layout_height="@dimen/grid_item_size"
+            android:layout_margin="@dimen/grid_item_margin"
+            android:textColor="@color/main"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:background="@drawable/rounded_item"/>
+
+        <TextView
+            android:layout_width="@dimen/grid_item_size"
+            android:layout_height="@dimen/grid_item_size"
+            android:layout_margin="@dimen/grid_item_margin"
+            android:textColor="@color/main"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:background="@drawable/rounded_item"/>
+
+        <TextView
+            android:layout_width="@dimen/grid_item_size"
+            android:layout_height="@dimen/grid_item_size"
+            android:layout_margin="@dimen/grid_item_margin"
+            android:textColor="@color/main"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:layout_gravity="fill"
+            android:layout_columnSpan="3"
+            android:background="@drawable/rounded_item"/>
+    </GridLayout>
+
+    <!--todo chart-->
+</LinearLayout>
