@@ -3,10 +3,12 @@ package com.itechart.covid_tracker.model
 import com.itechart.covid_tracker.presenter.main.Country
 import com.itechart.covid_tracker.presenter.chart.Day
 import com.itechart.covid_tracker.presenter.profile.User
+import com.itechart.covid_tracker.presenter.settings.Settings
 import java.time.MonthDay
 
 object Model {
     private val countries = ArrayList<Country>()
+    private val settings = Settings()
     init {//todo tmp
         countries += Country().apply { name = "group 1" }
         countries += Country().apply { name = "group 2"; favorite = true }
@@ -64,5 +66,9 @@ object Model {
     fun loadUser(): User { //todo
         val user = User()
         return user
+    }
+
+    fun loadSettings(): Settings{ //todo
+        return settings
     }
 }

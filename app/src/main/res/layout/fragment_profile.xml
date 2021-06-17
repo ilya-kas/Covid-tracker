@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     style="@style/BodyStyle"
-    tools:context="com.itechart.covid_tracker.view.chart_screen.ChartFragment">
+    tools:context="com.itechart.covid_tracker.view.profile_screen.ProfileFragment">
 
     <!--Profile label -->
     <TextView

@@ -4,8 +4,10 @@ import androidx.core.view.get
 import com.google.android.material.navigationrail.NavigationRailView
 import com.itechart.covid_tracker.R
 import com.itechart.covid_tracker.view.favorites_screen.FavoritesFragment
+import com.itechart.covid_tracker.view.login_screen.EnterFragment
 import com.itechart.covid_tracker.view.main_screen.MainFragment
 import com.itechart.covid_tracker.view.profile_screen.ProfileFragment
+import com.itechart.covid_tracker.view.settings_screen.SettingsFragment
 
 class MenuController(activity: MainActivity) {
     val top_menu = activity.findViewById<NavigationRailView>(R.id.top_navigation_rail)
@@ -60,13 +62,13 @@ class MenuController(activity: MainActivity) {
                 R.id.settings -> {
                     activity.supportFragmentManager
                             .beginTransaction()
-                            .replace(R.id.fragment_container, MainFragment.newInstance()) //todo
+                            .replace(R.id.fragment_container, SettingsFragment.newInstance())
                             .commit()
                 }
                 R.id.enter -> {
                     activity.supportFragmentManager
                             .beginTransaction()
-                            .replace(R.id.fragment_container, MainFragment.newInstance()) //todo
+                            .replace(R.id.fragment_container, EnterFragment.newInstance())
                             .commit()
                 }
             }

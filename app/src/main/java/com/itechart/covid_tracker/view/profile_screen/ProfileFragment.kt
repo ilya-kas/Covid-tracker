@@ -16,7 +16,6 @@ class ProfileFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragment = inflater.inflate(R.layout.fragment_profile, container, false)
         presenter = ProfilePresenter()
-        presenter.updateUserInfo()
 
         val topLabel = fragment.findViewById<TextView>(R.id.top_label)
         topLabel.text = (presenter.user.name + " " + presenter.user.surname)

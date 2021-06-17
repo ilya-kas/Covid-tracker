@@ -10,6 +10,11 @@ import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.TextView
 import androidx.core.view.children
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.Description
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.itechart.covid_tracker.R
 import com.itechart.covid_tracker.presenter.chart.ChartPresenter
 
@@ -48,6 +53,23 @@ class ChartFragment: Fragment() {
                 view.setTextColor(Color.parseColor("#FF0000"))
         }else
             view.visibility = INVISIBLE //else hide
+
+        val chart = fragment.findViewById<LineChart>(R.id.chart)
+        chart.description = Description().apply { text = "" }
+        val legend = chart.legend
+        legend.textColor = Color.WHITE
+
+        val info = ArrayList<Entry>(presenter.listLength) //info for chart
+        for ((index, day) in presenter.days.withIndex())
+            info += Entry(index.toFloat(),day.count.toFloat())
+
+        val lineDataSet = LineDataSet(info, "Statistics")
+        lineDataSet.color = Color.RED
+        lineDataSet.valueTextColor = Color.RED
+
+        val lineData = LineData(lineDataSet)
+        chart.data = lineData
+        chart.invalidate()
 
         return fragment
     }
