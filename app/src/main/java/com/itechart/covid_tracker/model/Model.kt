@@ -6,26 +6,28 @@ import com.itechart.covid_tracker.presenter.profile.User
 import java.time.MonthDay
 
 object Model {
-    fun loadGroups():ArrayList<Country>{ //todo tmp
-        val list = ArrayList<Country>()
-        list += Country().apply { name = "group 1" }
-        list += Country().apply { name = "group 2"; favorite = true }
-        list += Country().apply { name = "group 3" }
-        list += Country().apply { name = "group 4"; favorite = true }
-        list += Country().apply { name = "group 5" }
-        list += Country().apply { name = "group 6"; favorite = true }
-        list += Country().apply { name = "group 7" }
-        list += Country().apply { name = "group 8"; favorite = true }
-        list += Country().apply { name = "group 9" }
-        list += Country().apply { name = "group 10"; favorite = true }
-        list += Country().apply { name = "group 11" }
-        list += Country().apply { name = "group 12"; favorite = true }
-        list += Country().apply { name = "group 13" }
-
-        return list
+    private val countries = ArrayList<Country>()
+    init {//todo tmp
+        countries += Country().apply { name = "group 1" }
+        countries += Country().apply { name = "group 2"; favorite = true }
+        countries += Country().apply { name = "group 3" }
+        countries += Country().apply { name = "group 4"; favorite = true }
+        countries += Country().apply { name = "group 5" }
+        countries += Country().apply { name = "group 6"; favorite = true }
+        countries += Country().apply { name = "group 7" }
+        countries += Country().apply { name = "group 8"; favorite = true }
+        countries += Country().apply { name = "group 9" }
+        countries += Country().apply { name = "group 10"; favorite = true }
+        countries += Country().apply { name = "group 11" }
+        countries += Country().apply { name = "group 12"; favorite = true }
+        countries += Country().apply { name = "group 13" }
     }
 
-    fun loadItems(nom:Int):ArrayList<Day>{ //todo tmp
+    fun loadCountries():ArrayList<Country>{ //todo
+        return countries
+    }
+
+    fun loadDays(nom:Int):ArrayList<Day>{ //todo
         val list = ArrayList<Day>()
         when(nom){
             0 -> {

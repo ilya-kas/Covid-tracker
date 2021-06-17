@@ -15,16 +15,21 @@ import com.itechart.covid_tracker.presenter.chart.ChartPresenter
 
 class ChartFragment: Fragment() {
     private lateinit var fragment:View
+    private lateinit var presenter:ChartPresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragment = inflater.inflate(R.layout.fragment_chart, container, false)
+        presenter = ChartPresenter()
+        arguments?.let {
+            presenter.number = it.getInt("nom")
+        }
 
         val grid = fragment.findViewById<GridLayout>(R.id.grid)
         val iterator = grid.children.iterator()
         for (i in -10..-2){
             val view:TextView = iterator.next() as TextView
-            if (ChartPresenter.listLength+i>=0) { //if there are enough elements
-                view.text = ChartPresenter.days[ChartPresenter.listLength + i].shortText //then set text
+            if (presenter.listLength+i>=0) { //if there are enough elements
+                view.text = presenter.days[presenter.listLength + i].shortText //then set text
                 if (view.text.startsWith("-"))
                     view.setTextColor(Color.parseColor("#00FF00"))
                 else
@@ -35,9 +40,9 @@ class ChartFragment: Fragment() {
         }
 
         val view:TextView = iterator.next() as TextView //last, long item
-        if (ChartPresenter.listLength>0) {
-            view.text = ChartPresenter.days[ChartPresenter.listLength - 1].text
-            if (ChartPresenter.days[ChartPresenter.listLength - 1].count <= 0)
+        if (presenter.listLength>0) {
+            view.text = presenter.days[presenter.listLength - 1].text
+            if (presenter.days[presenter.listLength - 1].count <= 0)
                 view.setTextColor(Color.parseColor("#00FF00"))
             else
                 view.setTextColor(Color.parseColor("#FF0000"))
@@ -49,9 +54,11 @@ class ChartFragment: Fragment() {
 
     companion object{
         fun newInstance(nom:Int): Fragment {
-            ChartPresenter.number = nom
-            return ChartFragment()
+            val fragment = ChartFragment()
+            fragment.arguments = Bundle().apply {
+                    putInt("nom", nom)
+            }
+            return fragment
         }
     }
-} //todo номер через bundle
-//todo не object presenter
+}

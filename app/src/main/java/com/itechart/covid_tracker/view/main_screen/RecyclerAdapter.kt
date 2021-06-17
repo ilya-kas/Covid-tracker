@@ -44,14 +44,14 @@ class RecyclerAdapter(private val fragment: MainFragment, val presenter: MainPre
         }
 
         val tv_label = holder.line.findViewById<TextView>(R.id.tv_label)
-        tv_label.text = presenter.countries[realPosition].name
+        tv_label.text = day.name
 
         holder.line.setOnClickListener { //to open chart
             fragment.lineItemPressed(realPosition)
         }
     }
 
-    override fun getItemCount() = (presenter.listLength- offset* ITEM_ON_PAGE_COUNT).coerceAtMost(ITEM_ON_PAGE_COUNT)
+    override fun getItemCount() = (presenter.listLength - offset*ITEM_ON_PAGE_COUNT).coerceAtMost(ITEM_ON_PAGE_COUNT)
 
     /**
      * set viewing page.

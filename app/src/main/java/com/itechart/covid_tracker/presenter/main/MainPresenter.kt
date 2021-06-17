@@ -3,7 +3,7 @@ package com.itechart.covid_tracker.presenter.main
 import com.itechart.covid_tracker.model.Model
 
 class MainPresenter {
-    val countries = Model.loadGroups()
+    val countries = Model.loadCountries()
     val listLength
         get() = countries.size
 

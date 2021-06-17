@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/hidden"
+        android:visible="false"/>
+    <item
+        android:id="@+id/settings"
+        android:enabled="true"
+        android:icon="@drawable/gear"
+        android:title="@string/settings"/>
+    <item
+        android:id="@+id/enter"
+        android:enabled="true"
+        android:icon="@drawable/enter"
+        android:title="@string/enter"/>
+</menu>
