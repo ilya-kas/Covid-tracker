@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/BodyStyle"
-    tools:context="com.itechart.covid_tracker.screens.login.view.EnterFragment">
+    tools:context="com.itechart.covid_tracker.screens.login.view.LoginFragment">
 
-    <!--User info-->
+    <!--User info todo-->
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,22 +21,13 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <Button
-                android:id="@+id/b_sign_in"
-                android:layout_width="150dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sign_in"
-                android:textColor="@color/black"
-                android:textSize="25sp"/>
+                android:text="Register"
+                android:textSize="25sp"
+                android:textColor="@color/alt"/>
 
-            <Button
-                android:id="@+id/b_sign_up"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/sign_up"
-                android:textColor="@color/black"
-                android:textSize="25sp"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </FrameLayout>

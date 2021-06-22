@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     style="@style/BodyStyle"
-    tools:context="com.itechart.covid_tracker.view.favorites_screen.FavoritesFragment">
+    tools:context="com.itechart.covid_tracker.screens.favorites.view.FavoritesFragment">
 
     <!--Favorites label-->
     <FrameLayout

@@ -1,32 +1,55 @@
 package com.itechart.covid_tracker.model
 
-import com.itechart.covid_tracker.presenter.main.Country
-import com.itechart.covid_tracker.presenter.chart.Day
-import com.itechart.covid_tracker.presenter.profile.User
-import com.itechart.covid_tracker.presenter.settings.Settings
+import android.content.Context
+import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.room.Room
+import com.itechart.covid_tracker.model.entities.Country
+import com.itechart.covid_tracker.model.entities.Day
+import com.itechart.covid_tracker.model.entities.Settings
+import com.itechart.covid_tracker.model.entities.User
+import com.itechart.covid_tracker.model.network.GetCountries
+import com.itechart.covid_tracker.model.network.RetrofitInstance
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.withContext
+import retrofit2.awaitResponse
 import java.time.MonthDay
 
 object Model {
-    private val countries = ArrayList<Country>()
     private val settings = Settings()
-    init {//todo tmp
-        countries += Country().apply { name = "group 1" }
-        countries += Country().apply { name = "group 2"; favorite = true }
-        countries += Country().apply { name = "group 3" }
-        countries += Country().apply { name = "group 4"; favorite = true }
-        countries += Country().apply { name = "group 5" }
-        countries += Country().apply { name = "group 6"; favorite = true }
-        countries += Country().apply { name = "group 7" }
-        countries += Country().apply { name = "group 8"; favorite = true }
-        countries += Country().apply { name = "group 9" }
-        countries += Country().apply { name = "group 10"; favorite = true }
-        countries += Country().apply { name = "group 11" }
-        countries += Country().apply { name = "group 12"; favorite = true }
-        countries += Country().apply { name = "group 13" }
+    private lateinit var favoritesDAO: FavoritesDAO //DAO for ROOM DB access
+    var countriesList: GetCountries? = null
+    val countries = ArrayList<Country>(227) //227 is because api always returns this number
+
+    fun initRoom(context: Context) {
+        val db = Room
+            .databaseBuilder(context, FavoritesDatabase::class.java, "Favorites")
+            .build() //accessing favorites database
+        favoritesDAO = db.countriesDao()
     }
 
-    fun loadCountries():ArrayList<Country>{ //todo
-        return countries
+    fun loadFavorites(){ //favorite countries loading from DB
+        val favorites = favoritesDAO.getAll()
+        for (x in favorites)
+            countries[x.id].favorite = true
+    }
+
+    suspend fun loadCountries(){
+        try {
+            val response = RetrofitInstance.api.getCountiesList().awaitResponse()
+            if (response.isSuccessful) {
+                countriesList = response.body()
+
+                countries.clear()
+                for ((i, x) in countriesList!!.response.withIndex()) {
+                    countries += Country(i, x, false, null)
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("Network", e.toString())
+        }
     }
 
     fun loadDays(nom:Int):ArrayList<Day>{ //todo
@@ -64,11 +87,10 @@ object Model {
     }
 
     fun loadUser(): User { //todo
-        val user = User()
-        return user
+        return User()
     }
 
-    fun loadSettings(): Settings{ //todo
+    fun loadSettings(): Settings { //todo
         return settings
     }
 }
