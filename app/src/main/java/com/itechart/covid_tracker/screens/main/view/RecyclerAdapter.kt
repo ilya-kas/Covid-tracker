@@ -34,19 +34,19 @@ class RecyclerAdapter(private val fragment: MainFragment, val presenter: MainPre
     //filling line views
     override fun onBindViewHolder(holder: LineViewHolder, position: Int) {
         val realPosition = position + offset* ITEM_ON_PAGE_COUNT
-        val day = presenter.countries[realPosition]
+        val country = presenter.countries[realPosition]
 
-        holder.ib_favorite.setImageResource(if (day.favorite) R.drawable.star_filled else R.drawable.star_empty) //favorites
+        holder.ib_favorite.setImageResource(if (country.favorite) R.drawable.star_filled else R.drawable.star_empty) //favorites
         holder.ib_favorite.setOnClickListener {
             presenter.starred(realPosition)
-            holder.ib_favorite.setImageResource(if (day.favorite) R.drawable.star_filled else R.drawable.star_empty)
+            holder.ib_favorite.setImageResource(if (country.favorite) R.drawable.star_filled else R.drawable.star_empty)
         }
 
         val tv_label = holder.line.findViewById<TextView>(R.id.tv_label)
-        tv_label.text = day.name
+        tv_label.text = country.name
 
         holder.line.setOnClickListener { //to open chart
-            fragment.lineItemPressed(realPosition)
+            fragment.lineItemPressed(country.id)
         }
     }
 
@@ -62,6 +62,16 @@ class RecyclerAdapter(private val fragment: MainFragment, val presenter: MainPre
         val newOffset = nom.coerceAtMost(presenter.listLength / ITEM_ON_PAGE_COUNT).coerceAtLeast(0)
         if (newOffset==offset) return
         offset = newOffset
+        notifyDataSetChanged()
+    }
+
+    /**
+     * filters showing items by names
+     */
+    fun filter(filter: String){
+        presenter.filter(filter)
+        offset = 0
+        fragment.updatePaging()
         notifyDataSetChanged()
     }
 }

@@ -2,24 +2,26 @@ package com.itechart.covid_tracker.model
 
 import android.content.Context
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.room.Room
+import com.itechart.covid_tracker.model.database.FavoritesDAO
+import com.itechart.covid_tracker.model.database.FavoritesDatabase
+import com.itechart.covid_tracker.model.database.LoadableCountry
 import com.itechart.covid_tracker.model.entities.Country
 import com.itechart.covid_tracker.model.entities.Day
 import com.itechart.covid_tracker.model.entities.Settings
 import com.itechart.covid_tracker.model.entities.User
 import com.itechart.covid_tracker.model.network.GetCountries
 import com.itechart.covid_tracker.model.network.RetrofitInstance
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.currentCoroutineContext
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import retrofit2.awaitResponse
+import java.io.IOException
 import java.time.MonthDay
 
 object Model {
     private val settings = Settings()
-    private lateinit var favoritesDAO: FavoritesDAO //DAO for ROOM DB access
+    private var favoritesDAO: FavoritesDAO? = null //DAO for ROOM DB access
     var countriesList: GetCountries? = null
     val countries = ArrayList<Country>(227) //227 is because api always returns this number
 
@@ -31,9 +33,18 @@ object Model {
     }
 
     fun loadFavorites(){ //favorite countries loading from DB
-        val favorites = favoritesDAO.getAll()
+        val favorites = favoritesDAO!!.getAll()
         for (x in favorites)
             countries[x.id].favorite = true
+    }
+
+    fun starred(country: Country){
+        GlobalScope.launch {
+            if (country.favorite)
+                favoritesDAO?.insert(LoadableCountry(country))
+            else
+                favoritesDAO?.delete(LoadableCountry(country))
+        }
     }
 
     suspend fun loadCountries(){
@@ -47,7 +58,9 @@ object Model {
                     countries += Country(i, x, false, null)
                 }
             }
-        } catch (e: Exception) {
+        } catch (e: IOException) {
+            Log.e("Network", e.toString())
+        } catch (e: HttpException){
             Log.e("Network", e.toString())
         }
     }

@@ -1,23 +1,28 @@
 package com.itechart.covid_tracker.model.entities
 
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
+import com.itechart.covid_tracker.model.Model
 
-@Entity(tableName = "favorites")
-data class Country (
-    @PrimaryKey(autoGenerate = true)
-    var id: Int,
-    var name: String,
+class Country{
+    private var initialization = true //not to reset favorites value while creating list of countries
+
+    var id: Int
+    var name: String
     var favorite: Boolean
-){
-    @Ignore
-    var info: List<Day>? = null
+        set(value) {
+            field = value
 
-    constructor(id: Int,
-                name: String,
-                favorite: Boolean,
-                info: List<Day>?) : this(id, name, favorite){
-                    this.info = info
-                }
+            if (initialization){
+                initialization = false
+                return
+            }
+            Model.starred(this)
+        }
+    var info: List<Day>?
+
+    constructor(id: Int, name: String, favorite: Boolean, info: List<Day>?) {
+        this.id = id
+        this.name = name
+        this.favorite = favorite
+        this.info = info
+    }
 }

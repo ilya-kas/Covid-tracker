@@ -5,10 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.itechart.covid_tracker.R
@@ -28,6 +31,18 @@ class MainFragment: Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = RecyclerAdapter(this, presenter)
 
+        initPaging(recyclerView)
+
+        val et_search = fragment.findViewById<EditText>(R.id.et_search)
+        et_search.addTextChangedListener {
+            (recyclerView.adapter as RecyclerAdapter).filter(et_search.text.toString())
+        }
+
+        return fragment
+    }
+
+    //initialization of paging
+    private fun initPaging(recyclerView: RecyclerView){
         val pagesCount = ceil(presenter.listLength/ ITEM_ON_PAGE_COUNT.toDouble()).toInt()
         val ll_paging = fragment.findViewById<LinearLayout>(R.id.ll_paging)
 
@@ -58,8 +73,19 @@ class MainFragment: Fragment() {
             b_last.visibility = INVISIBLE
         else
             b_last.text = ((presenter.listLength / ITEM_ON_PAGE_COUNT) + 1).toString()
+    }
 
-        return fragment
+    fun updatePaging(){
+        val pagesCount = ceil(presenter.listLength/ ITEM_ON_PAGE_COUNT.toDouble()).toInt()
+        val ll_paging = fragment.findViewById<LinearLayout>(R.id.ll_paging)
+
+        val b_last = ll_paging.findViewById<TextView>(R.id.b_last) //button "move to last page"
+        if (pagesCount==1) //makes last page button invisible if there is only 1 page
+            b_last.visibility = INVISIBLE
+        else {
+            b_last.text = ((presenter.listLength / ITEM_ON_PAGE_COUNT) + 1).toString()
+            b_last.visibility = VISIBLE
+        }
     }
 
     fun lineItemPressed(realPosition:Int){
