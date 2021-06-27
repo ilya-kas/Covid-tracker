@@ -6,17 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.lifecycle.ViewModelProvider
 import com.itechart.covid_tracker.R
-import com.itechart.covid_tracker.screens.login.presenter.LoginPresenter
-import com.itechart.covid_tracker.screens.main.view.MainFragment
+import com.itechart.covid_tracker.screens.login.LoginViewModel
 
 class EnterFragment: Fragment() {
     private lateinit var fragment: View
-    private lateinit var presenter: LoginPresenter
+    private lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragment = inflater.inflate(R.layout.fragment_enter, container, false)
-        presenter = LoginPresenter()
+        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         val b_sing_in = fragment.findViewById<Button>(R.id.b_sign_in)
         b_sing_in.setOnClickListener {

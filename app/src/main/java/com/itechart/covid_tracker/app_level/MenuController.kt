@@ -1,4 +1,4 @@
-package com.itechart.covid_tracker.activities
+package com.itechart.covid_tracker.app_level
 
 import androidx.core.view.get
 import com.google.android.material.navigationrail.NavigationRailView
@@ -6,8 +6,8 @@ import com.itechart.covid_tracker.R
 import com.itechart.covid_tracker.screens.favorites.view.FavoritesFragment
 import com.itechart.covid_tracker.screens.login.view.EnterFragment
 import com.itechart.covid_tracker.screens.main.view.MainFragment
-import com.itechart.covid_tracker.screens.profile.view.ProfileFragment
-import com.itechart.covid_tracker.screens.settings.view.SettingsFragment
+import com.itechart.covid_tracker.screens.profile.ProfileFragment
+import com.itechart.covid_tracker.screens.settings.SettingsFragment
 
 class MenuController(activity: MainActivity) {
     val top_menu = activity.findViewById<NavigationRailView>(R.id.top_navigation_rail)

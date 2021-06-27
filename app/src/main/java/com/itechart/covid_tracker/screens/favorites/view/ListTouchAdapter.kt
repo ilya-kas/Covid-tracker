@@ -1,41 +1,29 @@
-package com.itechart.covid_tracker.screens.favorites.view;
+package com.itechart.covid_tracker.screens.favorites.view
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 
-public class ListTouchAdapter extends ItemTouchHelper.Callback{
+class ListTouchAdapter(private val adapter: Swipable) : ItemTouchHelper.Callback() {
 
-    private final Swipable adapter;
-
-    public ListTouchAdapter(RecyclerAdapter queueAdapter) {
-        adapter = queueAdapter;
+    override fun isLongPressDragEnabled(): Boolean {
+        return false
     }
 
-    @Override
-    public boolean isLongPressDragEnabled() {
-        return false;
+    override fun isItemViewSwipeEnabled(): Boolean {
+        return true
     }
 
-    @Override
-    public boolean isItemViewSwipeEnabled() {
-        return true;
+    override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+        val dragFlags = 0
+        val swipeFlags = ItemTouchHelper.END
+        return makeMovementFlags(dragFlags, swipeFlags)
     }
 
-    @Override
-    public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-        final int dragFlags = 0;
-        final int swipeFlags = ItemTouchHelper.END;
-        return makeMovementFlags(dragFlags, swipeFlags);
+    override fun onMove(recyclerView: RecyclerView, source: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+        return true
     }
 
-    @Override
-    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder source, @NonNull RecyclerView.ViewHolder target) {
-        return true;
-    }
-
-    @Override
-    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-        adapter.onItemDismissed(viewHolder.getAdapterPosition());
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        adapter.onItemDismissed(viewHolder.adapterPosition)
     }
 }

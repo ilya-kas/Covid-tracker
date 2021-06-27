@@ -8,10 +8,9 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.itechart.covid_tracker.R
-import com.itechart.covid_tracker.screens.favorites.presenter.FavoritesPresenter
+import com.itechart.covid_tracker.screens.favorites.FavoritesViewModel
 
-class RecyclerAdapter(val presenter: FavoritesPresenter) : RecyclerView.Adapter<RecyclerAdapter.LineViewHolder>(),
-    Swipable {
+class RecyclerAdapter(private val viewModel: FavoritesViewModel) : RecyclerView.Adapter<RecyclerAdapter.LineViewHolder>(), Swipable {
 
     //on create empty line
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LineViewHolder {
@@ -19,22 +18,22 @@ class RecyclerAdapter(val presenter: FavoritesPresenter) : RecyclerView.Adapter<
                         .inflate(R.layout.item_main, parent, false)
         val ib_favorites = itemView.findViewById<ImageButton>(R.id.ib_star)
         ib_favorites.visibility = INVISIBLE
-        return LineViewHolder(itemView, presenter)
+        return LineViewHolder(itemView)
     }
 
     //filling line views
     override fun onBindViewHolder(holder: LineViewHolder, position: Int) {
-        val day = presenter.countries[position]
+        val day = viewModel.countries[position]
 
         val tv_label = holder.line.findViewById<TextView>(R.id.tv_label)
         tv_label.text = day.name
     }
 
-    override fun getItemCount() = presenter.listLength
+    override fun getItemCount() = viewModel.listLength
 
     override fun onItemDismissed(nom: Int) {
-        presenter.countries[nom].favorite = false
-        presenter.countries.removeAt(nom)
+        viewModel.countries[nom].favorite = false
+        viewModel.countries.removeAt(nom)
         notifyItemRemoved(nom)
     }
 
@@ -42,7 +41,7 @@ class RecyclerAdapter(val presenter: FavoritesPresenter) : RecyclerView.Adapter<
      * container of a line with itemView in it
      * itemView - LinearLayout generated from item_main.xml
      */
-    class LineViewHolder(itemView: View, val presenter: FavoritesPresenter) : RecyclerView.ViewHolder(itemView){
+    class LineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val line = itemView
     }
 }

@@ -18,6 +18,8 @@ import retrofit2.HttpException
 import retrofit2.awaitResponse
 import java.io.IOException
 import java.time.MonthDay
+import java.util.*
+import kotlin.collections.ArrayList
 
 object Model {
     private val settings = Settings()
@@ -54,9 +56,8 @@ object Model {
                 countriesList = response.body()
 
                 countries.clear()
-                for ((i, x) in countriesList!!.response.withIndex()) {
+                for ((i, x) in countriesList!!.response.withIndex())
                     countries += Country(i, x, false, null)
-                }
             }
         } catch (e: IOException) {
             Log.e("Network", e.toString())
@@ -65,37 +66,28 @@ object Model {
         }
     }
 
-    fun loadDays(nom:Int):ArrayList<Day>{ //todo
-        val list = ArrayList<Day>()
-        when(nom){
-            0 -> {
-                list += Day(MonthDay.now(), 2)
-                list += Day(MonthDay.now(),3)
-                list += Day(MonthDay.now(),-14)
-                list += Day(MonthDay.now(),8)
-                list += Day(MonthDay.now(),-14)
-                list += Day(MonthDay.now(),8)
-                list += Day(MonthDay.now(), 2)
-                list += Day(MonthDay.now(),3)
-                list += Day(MonthDay.now(),-14)
-                list += Day(MonthDay.now(), 2)
-                list += Day(MonthDay.now(),3)
+    fun getDays(nom:Int):List<Day>{
+        return (countries[nom].info!!)
+    }
+
+    suspend fun loadDays(nom:Int):List<Day>{
+        val list = LinkedList<Day>()
+        try {
+            val response = RetrofitInstance.api.getCountyStat(countries[nom].name).awaitResponse()
+            if (response.isSuccessful) {
+                val countryStatistics = response.body()
+
+                for (body in countryStatistics!!.response)
+                    body.cases.new?.let { list += Day(body.day, body.cases.new.toInt())}
+                list.reverse()
             }
-            1 -> {
-                list += Day(MonthDay.now(), 2)
-                list += Day(MonthDay.now(),3)
-                list += Day(MonthDay.now(),-14)
-                list += Day(MonthDay.now(),8)
-                list += Day(MonthDay.now(),-14)
-                list += Day(MonthDay.now(),8)
-                list += Day(MonthDay.now(), 2)
-                list += Day(MonthDay.now(),3)
-            }
-            2 -> {
-                list += Day(MonthDay.now(),3)
-            }
+        } catch (e: IOException) {
+            Log.e("Network", e.toString())
+        } catch (e: HttpException){
+            Log.e("Network", e.toString())
         }
 
+        countries[nom].info = list
         return list
     }
 

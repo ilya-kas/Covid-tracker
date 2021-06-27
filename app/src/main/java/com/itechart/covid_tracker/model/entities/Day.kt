@@ -1,10 +1,8 @@
 package com.itechart.covid_tracker.model.entities
 
-import java.time.MonthDay
-
-class Day(private val date:MonthDay, val count:Int) {
+class Day(private val date:String, val count:Int) {
     val text
-        get() = date.dayOfMonth.toString() + " " + date.month + ": " + count
+        get() = "$date: $count"
     val shortText
         get() = count.toString()
 }

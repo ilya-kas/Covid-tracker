@@ -1,11 +1,12 @@
-package com.itechart.covid_tracker.screens.main.presenter
+package com.itechart.covid_tracker.screens.main
 
+import androidx.lifecycle.ViewModel
 import com.itechart.covid_tracker.model.Model
 import com.itechart.covid_tracker.model.entities.Country
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MainPresenter {
+class MainViewModel: ViewModel() {
     var countries = Model.countries
         private set
     val listLength

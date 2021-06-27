@@ -7,11 +7,11 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.itechart.covid_tracker.R
-import com.itechart.covid_tracker.screens.main.presenter.MainPresenter
+import com.itechart.covid_tracker.screens.main.MainViewModel
 
 const val ITEM_ON_PAGE_COUNT = 10
 
-class RecyclerAdapter(private val fragment: MainFragment, val presenter: MainPresenter) : RecyclerView.Adapter<RecyclerAdapter.LineViewHolder>(){
+class RecyclerAdapter(private val fragment: MainFragment, private val viewModel: MainViewModel) : RecyclerView.Adapter<RecyclerAdapter.LineViewHolder>(){
     var offset = 0
     private set
 
@@ -34,11 +34,11 @@ class RecyclerAdapter(private val fragment: MainFragment, val presenter: MainPre
     //filling line views
     override fun onBindViewHolder(holder: LineViewHolder, position: Int) {
         val realPosition = position + offset* ITEM_ON_PAGE_COUNT
-        val country = presenter.countries[realPosition]
+        val country = viewModel.countries[realPosition]
 
         holder.ib_favorite.setImageResource(if (country.favorite) R.drawable.star_filled else R.drawable.star_empty) //favorites
         holder.ib_favorite.setOnClickListener {
-            presenter.starred(realPosition)
+            viewModel.starred(realPosition)
             holder.ib_favorite.setImageResource(if (country.favorite) R.drawable.star_filled else R.drawable.star_empty)
         }
 
@@ -50,7 +50,7 @@ class RecyclerAdapter(private val fragment: MainFragment, val presenter: MainPre
         }
     }
 
-    override fun getItemCount() = (presenter.listLength - offset* ITEM_ON_PAGE_COUNT).coerceAtMost(
+    override fun getItemCount() = (viewModel.listLength - offset* ITEM_ON_PAGE_COUNT).coerceAtMost(
         ITEM_ON_PAGE_COUNT
     )
 
@@ -59,7 +59,7 @@ class RecyclerAdapter(private val fragment: MainFragment, val presenter: MainPre
      * measures: [0, MainPresenter.getListLength() / ITEM_ON_PAGE_COUNT]
      */
     fun setPage(nom: Int){
-        val newOffset = nom.coerceAtMost(presenter.listLength / ITEM_ON_PAGE_COUNT).coerceAtLeast(0)
+        val newOffset = nom.coerceAtMost(viewModel.listLength / ITEM_ON_PAGE_COUNT).coerceAtLeast(0)
         if (newOffset==offset) return
         offset = newOffset
         notifyDataSetChanged()
@@ -69,7 +69,7 @@ class RecyclerAdapter(private val fragment: MainFragment, val presenter: MainPre
      * filters showing items by names
      */
     fun filter(filter: String){
-        presenter.filter(filter)
+        viewModel.filter(filter)
         offset = 0
         fragment.updatePaging()
         notifyDataSetChanged()
