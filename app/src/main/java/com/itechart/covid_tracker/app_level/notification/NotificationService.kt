@@ -24,7 +24,7 @@ class NotificationService: Service() {
         thread {                     //shows a notification in 5 seconds
             Thread.sleep(5000)
 
-            val settings = Model.loadSettings()
+            val settings = Model.settings
             if (settings.notifications)
                 showNotification(thisService)
         }

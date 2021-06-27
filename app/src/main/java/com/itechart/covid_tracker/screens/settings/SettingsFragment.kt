@@ -19,14 +19,8 @@ class SettingsFragment: Fragment() {
 
         val sw_notifications = fragment.findViewById<SwitchCompat>(R.id.sw_notifications)
         sw_notifications.isChecked = viewModel.settings.notifications
-        sw_notifications.setOnCheckedChangeListener { buttonView, isChecked ->
-            viewModel.settings.notifications = isChecked
-        }
-
-        val sw_sounds = fragment.findViewById<SwitchCompat>(R.id.sw_sounds)
-        sw_sounds.isChecked = viewModel.settings.sounds
-        sw_sounds.setOnCheckedChangeListener { buttonView, isChecked ->
-            viewModel.settings.sounds = isChecked
+        sw_notifications.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.checkedNotifications(isChecked)
         }
 
         return fragment

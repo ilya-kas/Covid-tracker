@@ -1,4 +1,4 @@
-package com.itechart.covid_tracker.model.database
+package com.itechart.covid_tracker.model.database.favorites
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

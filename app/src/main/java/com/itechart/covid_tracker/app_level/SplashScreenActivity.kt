@@ -13,9 +13,10 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         GlobalScope.launch(Dispatchers.IO) {
+            Model.initModel() //to init ROOM
             Model.loadCountries() //to load countries list from server
-            Model.initRoom(applicationContext) //to init ROOM
             Model.loadFavorites() //loading favorite countries
+            Model.loadSettings() //loading settings
             startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
             finish()
         }

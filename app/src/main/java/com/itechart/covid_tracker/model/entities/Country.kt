@@ -17,12 +17,12 @@ class Country{
             }
             Model.starred(this)
         }
-    var info: List<Day>?
+    var daysInfo: List<Day>?
 
     constructor(id: Int, name: String, favorite: Boolean, info: List<Day>?) {
         this.id = id
         this.name = name
         this.favorite = favorite
-        this.info = info
+        this.daysInfo = info
     }
 }

@@ -75,26 +75,6 @@
                         app:thumbTint="@color/alt"
                         app:trackTint="#CCCCCC"/>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="@style/SettingsTextStyle"
-                        android:text="@string/sounds"/>
-
-                    <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/sw_sounds"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        app:thumbTint="@color/alt"
-                        app:trackTint="#CCCCCC"/>
-                </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </FrameLayout>
