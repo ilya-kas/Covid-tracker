@@ -20,7 +20,7 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.itechart.covid_tracker.R
 
 class ChartFragment: Fragment() {
-    private lateinit var fragment:View
+    private lateinit var fragment: View
     private lateinit var viewModel: ChartViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

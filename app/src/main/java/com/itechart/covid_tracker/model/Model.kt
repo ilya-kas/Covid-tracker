@@ -1,10 +1,8 @@
 package com.itechart.covid_tracker.model
 
-import android.content.Context
 import android.util.Log
-import androidx.room.Room
+import com.itechart.covid_tracker.app_level.dagger.App
 import com.itechart.covid_tracker.model.database.FavoritesDAO
-import com.itechart.covid_tracker.model.database.FavoritesDatabase
 import com.itechart.covid_tracker.model.database.LoadableCountry
 import com.itechart.covid_tracker.model.entities.Country
 import com.itechart.covid_tracker.model.entities.Day
@@ -17,25 +15,21 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import retrofit2.awaitResponse
 import java.io.IOException
-import java.time.MonthDay
 import java.util.*
 import kotlin.collections.ArrayList
 
 object Model {
     private val settings = Settings()
-    private var favoritesDAO: FavoritesDAO? = null //DAO for ROOM DB access
+    lateinit var favoritesDAO: FavoritesDAO //DAO for ROOM DB access
     var countriesList: GetCountries? = null
     val countries = ArrayList<Country>(227) //227 is because api always returns this number
 
-    fun initRoom(context: Context) {
-        val db = Room
-            .databaseBuilder(context, FavoritesDatabase::class.java, "Favorites")
-            .build() //accessing favorites database
-        favoritesDAO = db.countriesDao()
+    fun initRoom() {
+        favoritesDAO = App.appComponent.getFavoritesDAO()
     }
 
     fun loadFavorites(){ //favorite countries loading from DB
-        val favorites = favoritesDAO!!.getAll()
+        val favorites = favoritesDAO.getAll()
         for (x in favorites)
             countries[x.id].favorite = true
     }
@@ -43,9 +37,9 @@ object Model {
     fun starred(country: Country){
         GlobalScope.launch {
             if (country.favorite)
-                favoritesDAO?.insert(LoadableCountry(country))
+                favoritesDAO.insert(LoadableCountry(country))
             else
-                favoritesDAO?.delete(LoadableCountry(country))
+                favoritesDAO.delete(LoadableCountry(country))
         }
     }
 
@@ -78,7 +72,7 @@ object Model {
                 val countryStatistics = response.body()
 
                 for (body in countryStatistics!!.response)
-                    body.cases.new?.let { list += Day(body.day, body.cases.new.toInt())}
+                    body.cases.new.let { list += Day(body.day, body.cases.new.toInt())}
                 list.reverse()
             }
         } catch (e: IOException) {
