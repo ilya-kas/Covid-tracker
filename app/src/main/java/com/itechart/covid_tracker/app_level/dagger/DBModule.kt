@@ -10,7 +10,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class AppModule(val context: Context) {
+class DBModule(val context: Context) {
     @Provides
     fun getFavoritesDAO(): FavoritesDAO {
         val db = Room

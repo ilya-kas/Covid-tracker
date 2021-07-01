@@ -6,19 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SwitchCompat
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.itechart.covid_tracker.R
+import com.itechart.covid_tracker.databinding.FragmentSettingsBinding
 
 class SettingsFragment: Fragment() {
     private lateinit var fragment:View
     private lateinit var viewModel: SettingsViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        fragment = inflater.inflate(R.layout.fragment_settings, container, false)
+        val binding: FragmentSettingsBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false) //data binding
+        fragment = binding.root
+
         viewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
 
         val sw_notifications = fragment.findViewById<SwitchCompat>(R.id.sw_notifications)
-        sw_notifications.isChecked = viewModel.settings.notifications
+        binding.state = viewModel.settings.notifications
         sw_notifications.setOnCheckedChangeListener { _, isChecked ->
             viewModel.checkedNotifications(isChecked)
         }

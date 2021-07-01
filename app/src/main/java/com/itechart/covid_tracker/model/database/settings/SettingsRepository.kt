@@ -13,7 +13,7 @@ class SettingsRepository {
         val loadableSettings = settingsDAO.getSettings()
         if (loadableSettings.isEmpty())
             return Settings(true)
-        return Settings(loadableSettings[0].notifications)
+        return Settings(loadableSettings.last().notifications)
     }
 
     fun save(settings: Settings){

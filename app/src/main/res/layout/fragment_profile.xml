@@ -1,86 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    style="@style/BodyStyle"
-    tools:context="com.itechart.covid_tracker.screens.profile.ProfileFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--Profile label -->
-    <TextView
-        android:id="@+id/top_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="15dp"
-        android:layout_gravity="center"
-        style="@style/ScreenLabelStyle"
-        android:textSize="@dimen/top_label_size"
-        android:text="Profile"/>
+    <data>
+        <variable
+            name="user"
+            type="com.itechart.covid_tracker.model.entities.User" />
+    </data>
 
-    <!--User info-->
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingBottom="90dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        style="@style/BodyStyle"
+        tools:context="com.itechart.covid_tracker.screens.profile.ProfileFragment">
 
-        <com.google.android.material.card.MaterialCardView
+        <!--Profile label -->
+        <TextView
+            android:id="@+id/top_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
             android:layout_gravity="center"
-            app:cardBackgroundColor="@color/main"
-            app:cardCornerRadius="20dp">
+            style="@style/ScreenLabelStyle"
+            android:textSize="@dimen/top_label_size"
+            android:text='@{user.name + " " + user.surname}' />
 
-            <LinearLayout
+        <!--User info-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingBottom="90dp">
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
+                android:layout_gravity="center"
+                app:cardBackgroundColor="@color/main"
+                app:cardCornerRadius="20dp">
 
-                <TextView
-                    android:id="@+id/tv_login"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/ProfileTextStyle"
-                    android:text="Login: login"/>
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-                <TextView
-                    android:id="@+id/tv_password"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/ProfileTextStyle"
-                    android:text="Password: password"/>
+                    <TextView
+                        android:id="@+id/tv_login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/ProfileTextStyle"
+                        android:text='@{"Login: " + user.login}' />
 
-                <TextView
-                    android:id="@+id/tv_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/ProfileTextStyle"
-                    android:text="Email: email"/>
+                    <TextView
+                        android:id="@+id/tv_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/ProfileTextStyle"
+                        android:text='@{"Password: " + user.password}' />
 
-                <TextView
-                    android:id="@+id/tv_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/ProfileTextStyle"
-                    android:text="Number: number"/>
+                    <TextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/ProfileTextStyle"
+                        android:text='@{"Email: " + user.email}' />
 
-                <TextView
-                    android:id="@+id/tv_index"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/ProfileTextStyle"
-                    android:text="Index: index"/>
+                    <TextView
+                        android:id="@+id/tv_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/ProfileTextStyle"
+                        android:text='@{"Number: " + user.number}' />
 
-                <TextView
-                    android:id="@+id/tv_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/ProfileTextStyle"
-                    android:text="Address: address"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </FrameLayout>
-</LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_index"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/ProfileTextStyle"
+                        android:text='@{"Index: " + user.index}' />
+
+                    <TextView
+                        android:id="@+id/tv_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/ProfileTextStyle"
+                        android:text='@{"Address: " + user.address}' />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
+    </LinearLayout>
+</layout>
