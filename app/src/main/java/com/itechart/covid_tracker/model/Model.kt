@@ -26,6 +26,7 @@ object Model {
      * Favorites database methods
      */
     fun loadFavorites(){ //favorite countries loading from DB
+        if (countries.isEmpty()) return
         favoritesRepository.loadFavorites(countries)
     }
 
@@ -34,7 +35,7 @@ object Model {
     }
 
     /**
-     * Favorites database methods
+     * settings database methods
      */
 
     fun loadSettings() {
