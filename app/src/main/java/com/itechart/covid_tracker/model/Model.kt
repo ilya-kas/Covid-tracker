@@ -9,7 +9,7 @@ import com.itechart.covid_tracker.model.entities.User
 import com.itechart.covid_tracker.model.network.CovidApiRepository
 import kotlin.collections.ArrayList
 
-object Model {
+class Model {
     private lateinit var favoritesRepository: FavoritesRepository
     private lateinit var covidApiRepository: CovidApiRepository
     private lateinit var settingsRepository: SettingsRepository

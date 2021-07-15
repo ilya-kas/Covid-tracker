@@ -1,9 +1,10 @@
 package com.itechart.covid_tracker.model.entities
 
-import com.itechart.covid_tracker.model.Model
+import com.itechart.covid_tracker.app_level.dagger.App
 
 class Country{
     private var initialization = true //not to reset favorites value while creating list of countries
+    val model = App.appComponent.getModel()//todo
 
     var id: Int
     var name: String
@@ -15,7 +16,7 @@ class Country{
                 initialization = false
                 return
             }
-            Model.starred(this)
+            model.starred(this)
         }
     var daysInfo: List<Day>?
 

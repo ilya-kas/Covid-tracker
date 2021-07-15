@@ -1,13 +1,16 @@
 package com.itechart.covid_tracker.screens.main
 
 import androidx.lifecycle.ViewModel
+import com.itechart.covid_tracker.app_level.dagger.App
 import com.itechart.covid_tracker.model.Model
 import com.itechart.covid_tracker.model.entities.Country
 import java.util.*
 import kotlin.collections.ArrayList
 
 class MainViewModel: ViewModel() {
-    var countries = Model.countries
+    val model = App.appComponent.getModel()//todo
+
+    var countries = model.countries
         private set
     val listLength
         get() = countries.size
@@ -22,7 +25,7 @@ class MainViewModel: ViewModel() {
      */
     fun filter(filter: String){
         if (filter.length < lastFilter.length)
-            countries = Model.countries
+            countries = model.countries
 
         val tmp = ArrayList<Country>()
         for (x in countries) {

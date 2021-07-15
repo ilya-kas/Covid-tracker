@@ -5,12 +5,12 @@ import com.itechart.covid_tracker.model.Model
 import com.itechart.covid_tracker.model.entities.Settings
 import javax.inject.Inject
 
-class SettingsViewModel @Inject constructor(): ViewModel() {
+class SettingsViewModel @Inject constructor(val model: Model): ViewModel() {
 
-    var settings = Model.settings
+    var settings = model.settings
 
     fun checkedNotifications(isChecked: Boolean){
         settings.notifications = isChecked
-        Model.saveSettings(settings)
+        model.saveSettings(settings)
     }
 }

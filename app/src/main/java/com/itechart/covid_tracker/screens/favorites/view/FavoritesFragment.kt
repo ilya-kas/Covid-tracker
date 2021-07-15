@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.itechart.covid_tracker.R
+import com.itechart.covid_tracker.app_level.dagger.App
 import com.itechart.covid_tracker.model.Model
 import com.itechart.covid_tracker.screens.chart.ChartFragment
 import com.itechart.covid_tracker.screens.chart.ChartViewModel
@@ -37,7 +38,8 @@ class FavoritesFragment: Fragment() {
 
     fun lineItemPressed(realPosition:Int){
         GlobalScope.launch {
-            Model.loadDays(realPosition)
+            val model = App.appComponent.getModel()//todo
+            model.loadDays(realPosition)
             parentFragmentManager
                     .beginTransaction()
                     .replace(R.id.fragment_container, ChartFragment.newInstance(realPosition))
