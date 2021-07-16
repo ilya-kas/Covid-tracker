@@ -11,6 +11,8 @@ import com.itechart.covid_tracker.model.database.favorites.FavoritesDatabase
 import com.itechart.covid_tracker.model.database.settings.SettingsDAO
 import com.itechart.covid_tracker.model.database.settings.SettingsDatabase
 import com.itechart.covid_tracker.model.entities.Settings
+import com.itechart.covid_tracker.model.network.BASE_URL
+import com.itechart.covid_tracker.model.network.CovidAPI
 import com.itechart.covid_tracker.screens.settings.SettingsFragment
 import com.itechart.covid_tracker.screens.settings.SettingsViewModel
 import dagger.Binds
@@ -18,20 +20,23 @@ import dagger.Component
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [DBModule::class, ViewModelModule::class])
+@Component(modules = [DBModule::class, APIModule::class, ViewModelModule::class])
 interface AppComponent {
-    fun getFavoritesDAO(): FavoritesDAO
-    fun getSettingsDAO(): SettingsDAO
     fun getSettingsViewModel(): SettingsViewModel
     fun getModel(): Model
 
     fun injectSettingsFragment(fragment: SettingsFragment)
+    fun injectModel(model: Model)
 }
 
-//var activity: MainActivity? = null //for var 1 injection
+/**
+ * Modules
+ */
 
 @Module
 class DBModule(val context: Context) {
@@ -54,7 +59,22 @@ class DBModule(val context: Context) {
     @Singleton
     @Provides
     fun getModel(): Model{
-        return Model()
+        val model = Model()
+        App.appComponent.injectModel(model)
+        return model
+    }
+}
+
+@Module
+class APIModule{
+    @Singleton
+    @Provides
+    fun getCovidAPI(): CovidAPI{
+        val retrofit = Retrofit.Builder()
+                        .baseUrl(BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build()
+        return retrofit.create(CovidAPI::class.java)
     }
 }
 

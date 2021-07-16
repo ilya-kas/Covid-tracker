@@ -7,20 +7,19 @@ import com.itechart.covid_tracker.model.entities.Day
 import com.itechart.covid_tracker.model.entities.Settings
 import com.itechart.covid_tracker.model.entities.User
 import com.itechart.covid_tracker.model.network.CovidApiRepository
+import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 class Model {
-    private lateinit var favoritesRepository: FavoritesRepository
-    private lateinit var covidApiRepository: CovidApiRepository
-    private lateinit var settingsRepository: SettingsRepository
+    @Inject
+    lateinit var favoritesRepository: FavoritesRepository
+    @Inject
+    lateinit var covidApiRepository: CovidApiRepository
+    @Inject
+    lateinit var settingsRepository: SettingsRepository
+
     var countries:List<Country> = ArrayList(227) //227 is because api always returns this number
     var settings = Settings(true)
-
-    fun initModel() {
-        favoritesRepository = FavoritesRepository()
-        covidApiRepository = CovidApiRepository()
-        settingsRepository = SettingsRepository()
-    }
 
     /**
      * Favorites database methods

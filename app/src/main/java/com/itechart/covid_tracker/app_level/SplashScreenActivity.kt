@@ -16,7 +16,6 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         GlobalScope.launch(Dispatchers.IO) {
-            model.initModel() //to init ROOM
             model.loadCountries() //to load countries list from server
             model.loadFavorites() //loading favorite countries
             model.loadSettings() //loading settings

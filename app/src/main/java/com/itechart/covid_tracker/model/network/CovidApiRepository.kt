@@ -7,15 +7,18 @@ import retrofit2.HttpException
 import retrofit2.awaitResponse
 import java.io.IOException
 import java.util.*
+import javax.inject.Inject
 import kotlin.collections.ArrayList
 
-class CovidApiRepository {
+const val BASE_URL = "https://covid-193.p.rapidapi.com"
+
+class CovidApiRepository @Inject constructor(val api: CovidAPI) {
 
     suspend fun loadCountries(): List<Country>{
         val result = ArrayList<Country>()
 
         try {
-            val response = RetrofitInstance.api.getCountiesList().awaitResponse()
+            val response = api.getCountiesList().awaitResponse()
             if (response.isSuccessful) {
                 val countriesList = response.body()
 
@@ -33,7 +36,7 @@ class CovidApiRepository {
     suspend fun loadDays(country: Country):List<Day>{
         val list = LinkedList<Day>()
         try {
-            val response = RetrofitInstance.api.getCountyStat(country.name).awaitResponse()
+            val response = api.getCountyStat(country.name).awaitResponse()
             if (response.isSuccessful) {
                 val countryStatistics = response.body()
 

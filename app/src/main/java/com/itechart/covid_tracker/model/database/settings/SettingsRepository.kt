@@ -1,13 +1,11 @@
 package com.itechart.covid_tracker.model.database.settings
 
-import com.itechart.covid_tracker.app_level.dagger.App
-import com.itechart.covid_tracker.model.entities.Country
 import com.itechart.covid_tracker.model.entities.Settings
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-
-class SettingsRepository {
-    var settingsDAO = App.appComponent.getSettingsDAO() //DAO for ROOM DB access
+import javax.inject.Inject
+                                              //DAO for ROOM DB access
+class SettingsRepository @Inject constructor(var settingsDAO: SettingsDAO) {
 
     fun loadSettings(): Settings{ //favorite countries loading from DB
         val loadableSettings = settingsDAO.getSettings()
