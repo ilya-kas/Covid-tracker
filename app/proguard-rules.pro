@@ -19,3 +19,20 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-dontobfuscate
+
+#keep all
+-keep class com.itechart.covid_tracker.model.network.GetStats$Response$Cases { *; }
+
+#-keep class androidx.** { *; }
+#-keep class com.** { *; }
+#-keep class android.** { *; }
+#-keep class okhttp3.** { *; }
+#-keep class java.** { *; }
+#-keep class kotlinx.** { *; }
+#-keep class kotlin.** { *; }
+#-keep class okio.** { *; }
+#-keep class retrofit2.** { *; }
+#-keep class org.** { *; }
+#-keep class javax.** { *; }
+#-keep class dagger.** { *; }

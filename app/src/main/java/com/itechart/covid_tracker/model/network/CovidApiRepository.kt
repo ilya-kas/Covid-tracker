@@ -1,16 +1,16 @@
 package com.itechart.covid_tracker.model.network
 
 import android.util.Log
+import androidx.annotation.Keep
 import com.itechart.covid_tracker.model.entities.Country
 import com.itechart.covid_tracker.model.entities.Day
 import retrofit2.HttpException
 import retrofit2.awaitResponse
 import java.io.IOException
+import java.lang.Exception
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
-
-const val BASE_URL = "https://covid-193.p.rapidapi.com"
 
 class CovidApiRepository @Inject constructor(val api: CovidAPI) {
 
@@ -41,7 +41,12 @@ class CovidApiRepository @Inject constructor(val api: CovidAPI) {
                 val countryStatistics = response.body()
 
                 for (body in countryStatistics!!.response)
-                    body.cases.new?.let { list += Day(body.day, body.cases.new.toInt()) }
+                    try {
+                        Log.d("proguard debug", body.toString())
+                        list += Day(body.day, body.cases.new.toInt())
+                    }catch (e: Exception){
+                        e.printStackTrace()
+                    }
                 list.reverse()
             }
         } catch (e: IOException) {
