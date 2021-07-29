@@ -42,7 +42,6 @@ class CovidApiRepository @Inject constructor(val api: CovidAPI) {
 
                 for (body in countryStatistics!!.response)
                     try {
-                        Log.d("proguard debug", body.toString())
                         list += Day(body.day, body.cases.new.toInt())
                     }catch (e: Exception){
                         e.printStackTrace()

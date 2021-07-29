@@ -4,6 +4,7 @@ package com.itechart.covid_tracker.app_level.dagger
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.itechart.covid_tracker.app_level.dagger.annotation.ScreenScope
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton

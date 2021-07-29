@@ -13,4 +13,6 @@
     <string name="sign_up">Sign up</string>
     <string name="login">Login:</string>
     <string name="password">Password:</string>
+    <string name="web_client_id">761808370590-vkop617h4bmpt57f2ej8c8athpc3rsuh.apps.googleusercontent.com</string>
+    <string name="app_client_id">761808370590-o44snlig81l979omcvrerkdj46fb77nu.apps.googleusercontent.com</string>
 </resources>

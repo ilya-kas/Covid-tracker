@@ -1,4 +1,4 @@
-package com.itechart.covid_tracker.app_level.dagger
+package com.itechart.covid_tracker.app_level.dagger.component
 
 import com.itechart.covid_tracker.app_level.dagger.module.APIModule
 import com.itechart.covid_tracker.app_level.dagger.module.DBModule
@@ -10,10 +10,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [DBModule::class, APIModule::class, ViewModelModule::class])
+@Component(modules = [DBModule::class, APIModule::class])
 interface AppComponent {
-    fun getSettingsViewModel(): SettingsViewModel
     fun getModel(): Model
-
-    fun injectSettingsFragment(fragment: SettingsFragment)
 }

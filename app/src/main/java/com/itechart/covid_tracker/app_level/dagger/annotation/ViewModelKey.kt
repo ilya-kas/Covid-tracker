@@ -1,4 +1,4 @@
-package com.itechart.covid_tracker.app_level.dagger
+package com.itechart.covid_tracker.app_level.dagger.annotation
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

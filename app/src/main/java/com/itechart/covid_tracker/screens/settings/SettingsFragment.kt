@@ -19,7 +19,7 @@ class SettingsFragment: Fragment() {
     lateinit var viewModel: SettingsViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        App.appComponent.injectSettingsFragment(this)
+        App.settingsScreenComponent.injectSettingsFragment(this)
 
         val binding: FragmentSettingsBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false) //data binding

@@ -3,7 +3,8 @@ package com.itechart.covid_tracker.app_level.dagger.module
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.itechart.covid_tracker.app_level.dagger.ViewModelFactory
-import com.itechart.covid_tracker.app_level.dagger.ViewModelKey
+import com.itechart.covid_tracker.app_level.dagger.annotation.ViewModelKey
+import com.itechart.covid_tracker.screens.profile.ProfileViewModel
 import com.itechart.covid_tracker.screens.settings.SettingsViewModel
 import dagger.Binds
 import dagger.Module
@@ -18,4 +19,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(SettingsViewModel::class)
     fun settingsViewModel(viewModel: SettingsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProfileViewModel::class)
+    fun profileViewModel(viewModel: ProfileViewModel): ViewModel
 }
