@@ -15,7 +15,7 @@ import javax.inject.Singleton
 const val BASE_URL = "https://covid-193.p.rapidapi.com"
 
 @Module
-class APIModule{
+open class APIModule{
 
     @Provides
     fun getConvertor(): Converter.Factory = GsonConverterFactory.create()
@@ -37,7 +37,7 @@ class APIModule{
 
     @Singleton
     @Provides
-    fun getCovidAPI(): CovidAPI {
+    open fun getCovidAPI(): CovidAPI {
         return getRetrofit().create(CovidAPI::class.java)
     }
 }

@@ -5,13 +5,11 @@ import com.itechart.covid_tracker.app_level.dagger.App
 import com.itechart.covid_tracker.model.Model
 import com.itechart.covid_tracker.model.entities.Country
 import java.util.*
+import javax.inject.Inject
 import kotlin.collections.ArrayList
 
-class MainViewModel: ViewModel() {
-    val model = App.appComponent.getModel()//todo
-
+class MainViewModel @Inject constructor(val model: Model): ViewModel() {
     var countries = model.countries
-        private set
     val listLength
         get() = countries.size
     private var lastFilter = ""

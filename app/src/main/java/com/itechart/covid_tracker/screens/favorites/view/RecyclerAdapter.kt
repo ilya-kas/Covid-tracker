@@ -37,8 +37,7 @@ class RecyclerAdapter(private val fragment: FavoritesFragment, private val viewM
     override fun getItemCount() = viewModel.listLength
 
     override fun onItemDismissed(nom: Int) {
-        viewModel.countries[nom].favorite = false
-        viewModel.countries.removeAt(nom)
+        viewModel.removed(nom)
         notifyItemRemoved(nom)
     }
 

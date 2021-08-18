@@ -13,9 +13,9 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class DBModule(val context: Context) {
+open class DBModule(val context: Context) {
     @Provides
-    fun getFavoritesDAO(): FavoritesDAO {
+    open fun getFavoritesDAO(): FavoritesDAO {
         val db = Room
             .databaseBuilder(context, FavoritesDatabase::class.java, "Favorites")
             .build() //accessing favorites database
@@ -23,7 +23,7 @@ class DBModule(val context: Context) {
     }
 
     @Provides
-    fun getSettingsDAO(): SettingsDAO {
+    open fun getSettingsDAO(): SettingsDAO {
         val db = Room
             .databaseBuilder(context, SettingsDatabase::class.java, "Settings")
             .build() //accessing favorites database

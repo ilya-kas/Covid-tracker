@@ -9,7 +9,7 @@ class SettingsViewModel @Inject constructor(val model: Model): ViewModel() {
 
     var settings = model.settings
 
-    fun checkedNotifications(isChecked: Boolean){
+    fun setNotificationsState(isChecked: Boolean){
         settings.notifications = isChecked
         model.saveSettings(settings)
     }

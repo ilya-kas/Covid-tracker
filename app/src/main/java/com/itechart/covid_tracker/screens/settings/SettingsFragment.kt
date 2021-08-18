@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SwitchCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.itechart.covid_tracker.R
 import com.itechart.covid_tracker.app_level.dagger.App
 import com.itechart.covid_tracker.databinding.FragmentSettingsBinding
@@ -28,7 +27,7 @@ class SettingsFragment: Fragment() {
         val sw_notifications = fragment.findViewById<SwitchCompat>(R.id.sw_notifications)
         binding.state = viewModel.settings.notifications
         sw_notifications.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.checkedNotifications(isChecked)
+            viewModel.setNotificationsState(isChecked)
         }
 
         return fragment
