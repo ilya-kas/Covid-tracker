@@ -1,8 +1,10 @@
 package com.itechart.covid_tracker.app_level
 
 import androidx.core.view.get
+import androidx.navigation.Navigation
 import com.google.android.material.navigationrail.NavigationRailView
 import com.itechart.covid_tracker.R
+import com.itechart.covid_tracker.app_level.dagger.App
 import com.itechart.covid_tracker.screens.favorites.view.FavoritesFragment
 import com.itechart.covid_tracker.screens.login.view.EnterFragment
 import com.itechart.covid_tracker.screens.main.view.MainFragment
@@ -16,8 +18,9 @@ class MenuController(activity: MainActivity) {
     var flag = false // flag if item was selected by program
 
     init {
-        bottom_menu.menu[0].isChecked = false
+        val navigation = App.appComponent.getNavigation()
 
+        bottom_menu.menu[0].isChecked = false
         top_menu.itemIconTintList = null
         bottom_menu.itemIconTintList = null
 
@@ -28,24 +31,9 @@ class MenuController(activity: MainActivity) {
             bottom_menu.selectedItemId = R.id.hidden
 
             when(item.itemId) {
-                R.id.main -> {
-                    activity.supportFragmentManager
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, MainFragment.newInstance())
-                            .commit()
-                }
-                R.id.profile -> {
-                    activity.supportFragmentManager
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, ProfileFragment.newInstance())
-                            .commit()
-                }
-                R.id.favorites -> {
-                    activity.supportFragmentManager
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, FavoritesFragment.newInstance())
-                            .commit()
-                }
+                R.id.main -> navigation.navigate(R.id.mainFragment)
+                R.id.profile -> navigation.navigate(R.id.profileFragment)
+                R.id.favorites -> navigation.navigate(R.id.favoritesFragment)
             }
 
             flag = false
@@ -59,18 +47,8 @@ class MenuController(activity: MainActivity) {
             top_menu.selectedItemId = R.id.hidden
 
             when(item.itemId) {
-                R.id.settings -> {
-                    activity.supportFragmentManager
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, SettingsFragment.newInstance())
-                            .commit()
-                }
-                R.id.enter -> {
-                    activity.supportFragmentManager
-                            .beginTransaction()
-                            .replace(R.id.fragment_container, EnterFragment.newInstance())
-                            .commit()
-                }
+                R.id.settings -> navigation.navigate(R.id.settingsFragment)
+                R.id.enter -> navigation.navigate(R.id.enterFragment)
             }
 
             flag = false

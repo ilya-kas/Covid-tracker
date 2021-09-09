@@ -17,14 +17,16 @@ import com.itechart.covid_tracker.screens.chart.ChartViewModel
 import com.itechart.covid_tracker.screens.favorites.FavoritesViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class FavoritesFragment: Fragment() {
     private lateinit var fragment:View
-    private lateinit var viewModel: FavoritesViewModel
+    @Inject
+    lateinit var viewModel: FavoritesViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragment = inflater.inflate(R.layout.fragment_favorites, container, false)
-        viewModel = ViewModelProvider(this).get(FavoritesViewModel::class.java)
+        App.appComponent.inject(this)
 
         val recyclerView = fragment.findViewById<RecyclerView>(R.id.rv_countries)
         recyclerView.layoutManager = LinearLayoutManager(context)

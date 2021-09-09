@@ -27,7 +27,7 @@ class ChartFragment: Fragment() {
         fragment = inflater.inflate(R.layout.fragment_chart, container, false)
         viewModel = ViewModelProvider(this).get(ChartViewModel::class.java)
         arguments?.let {
-            viewModel.number = it.getInt("nom")
+            viewModel.number = it.getInt("position")
         }
 
         val grid = fragment.findViewById<GridLayout>(R.id.grid)

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.itechart.covid_tracker.screens.main.view.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_chartFragment"
+            app:destination="@id/chartFragment" />
+        <argument android:name="position"
+                android:defaultValue="0"/>
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.itechart.covid_tracker.screens.profile.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.itechart.covid_tracker.screens.settings.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/chartFragment"
+        android:name="com.itechart.covid_tracker.screens.chart.ChartFragment"
+        android:label="fragment_chart"
+        tools:layout="@layout/fragment_chart" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.itechart.covid_tracker.screens.favorites.view.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/enterFragment"
+        android:name="com.itechart.covid_tracker.screens.login.view.EnterFragment"
+        android:label="fragment_enter"
+        tools:layout="@layout/fragment_enter" />
+</navigation>

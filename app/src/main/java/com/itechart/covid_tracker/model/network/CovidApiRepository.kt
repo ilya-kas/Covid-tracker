@@ -12,9 +12,9 @@ import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
 
-class CovidApiRepository @Inject constructor(val api: CovidAPI) {
+class CovidApiRepository @Inject constructor(val api: CovidAPI): CovidStatsProvider {
 
-    suspend fun loadCountries(): List<Country>{
+    override suspend fun loadCountries(): List<Country>{
         val result = ArrayList<Country>()
 
         try {
@@ -33,7 +33,7 @@ class CovidApiRepository @Inject constructor(val api: CovidAPI) {
         return result
     }
 
-    suspend fun loadDays(country: Country):List<Day>{
+    override suspend fun loadDays(country: Country):List<Day>{
         val list = LinkedList<Day>()
         try {
             val response = api.getCountyStat(country.name).awaitResponse()

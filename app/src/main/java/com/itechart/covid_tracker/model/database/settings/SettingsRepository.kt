@@ -5,16 +5,16 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
                                               //DAO for ROOM DB access
-class SettingsRepository @Inject constructor(var settingsDAO: SettingsDAO) {
+class SettingsRepository @Inject constructor(var settingsDAO: SettingsDAO): SettingsProvider {
 
-    fun loadSettings(): Settings{ //favorite countries loading from DB
+    override fun loadSettings(): Settings{ //favorite countries loading from DB
         val loadableSettings = settingsDAO.getSettings()
         if (loadableSettings.isEmpty())
             return Settings(true)
         return Settings(loadableSettings.last().notifications)
     }
 
-    fun save(settings: Settings){
+    override fun save(settings: Settings){
         GlobalScope.launch {
             settingsDAO.insert(LoadableSettings(settings))
         }

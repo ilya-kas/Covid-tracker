@@ -6,16 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
-import com.google.android.gms.auth.api.identity.Identity
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.Scope
 import com.itechart.covid_tracker.R
 import com.itechart.covid_tracker.screens.login.LoginViewModel
-
-
-private const val GOOGLE_AUTH_INTENT_CODE = 123
 
 class LoginFragment: Fragment() {
 

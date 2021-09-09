@@ -1,20 +1,20 @@
 package com.itechart.covid_tracker.model
 
-import com.itechart.covid_tracker.model.database.favorites.FavoritesRepository
-import com.itechart.covid_tracker.model.database.settings.SettingsRepository
+import com.itechart.covid_tracker.model.database.favorites.FavoritesProvider
+import com.itechart.covid_tracker.model.database.settings.SettingsProvider
 import com.itechart.covid_tracker.model.entities.Country
 import com.itechart.covid_tracker.model.entities.Day
 import com.itechart.covid_tracker.model.entities.Settings
 import com.itechart.covid_tracker.model.entities.User
-import com.itechart.covid_tracker.model.network.CovidApiRepository
+import com.itechart.covid_tracker.model.network.CovidStatsProvider
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.collections.ArrayList
 
 @Singleton
-class Model @Inject constructor(val favoritesRepository: FavoritesRepository,
-                                val covidApiRepository: CovidApiRepository,
-                                val settingsRepository: SettingsRepository){
+class Model @Inject constructor(val favoritesProvider: FavoritesProvider,
+                                val covidStatsProvider: CovidStatsProvider,
+                                val settingsProvider: SettingsProvider){
 
     var countries:List<Country> = ArrayList(227) //227 is because api always returns this number
     var settings = Settings(true)
@@ -24,11 +24,13 @@ class Model @Inject constructor(val favoritesRepository: FavoritesRepository,
      */
     fun loadFavorites(){ //favorite countries loading from DB
         if (countries.isEmpty()) return
-        favoritesRepository.loadFavorites(countries)
+        val favorites = favoritesProvider.loadFavorites()
+        for (country in favorites)
+            countries[country.id].favorite = true
     }
 
     fun starred(country: Country){
-        favoritesRepository.starred(country)
+        favoritesProvider.starred(country)
     }
 
     /**
@@ -36,22 +38,22 @@ class Model @Inject constructor(val favoritesRepository: FavoritesRepository,
      */
 
     fun loadSettings() {
-        settings = settingsRepository.loadSettings()
+        settings = settingsProvider.loadSettings()
     }
 
     fun saveSettings(settings: Settings){
-        settingsRepository.save(settings)
+        settingsProvider.save(settings)
     }
 
     /**
      * Retrofit data gathering methods
      */
     suspend fun loadCountries(){
-        countries = covidApiRepository.loadCountries()
+        countries = covidStatsProvider.loadCountries()
     }
 
     suspend fun loadDays(nom:Int):List<Day>{
-        return covidApiRepository.loadDays(countries[nom])
+        return covidStatsProvider.loadDays(countries[nom])
     }
 
     /**

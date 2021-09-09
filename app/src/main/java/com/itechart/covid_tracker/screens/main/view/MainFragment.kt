@@ -16,22 +16,27 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.itechart.covid_tracker.R
+import com.itechart.covid_tracker.app_level.MainActivity
 import com.itechart.covid_tracker.app_level.dagger.App
+import com.itechart.covid_tracker.app_level.dagger.module.storedActivity
 import com.itechart.covid_tracker.model.Model
 import com.itechart.covid_tracker.screens.chart.ChartFragment
 import com.itechart.covid_tracker.screens.chart.ChartViewModel
 import com.itechart.covid_tracker.screens.main.MainViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import kotlin.math.ceil
 
 class MainFragment: Fragment() {
     private lateinit var fragment:View
-    private lateinit var viewModel: MainViewModel
+
+    @Inject
+    lateinit var viewModel: MainViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragment = inflater.inflate(R.layout.fragment_main, container, false)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        App.appComponent.inject(this)
 
         val recyclerView = fragment.findViewById<RecyclerView>(R.id.rv_countries)
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -96,13 +101,14 @@ class MainFragment: Fragment() {
 
     fun lineItemPressed(realPosition:Int){
         GlobalScope.launch {
-            val model = App.appComponent.getModel()//todo
+            val model = App.appComponent.getModel()
             model.loadDays(realPosition)
-            parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, ChartFragment.newInstance(realPosition))
-                    .addToBackStack("chart")
-                    .commit()
+            val navigation = App.appComponent.getNavigation()
+
+            val args = Bundle().apply {
+                putInt("position", realPosition)
+            }
+            storedActivity.runOnUiThread { navigation.navigate(R.id.action_mainFragment_to_chartFragment, args) }
         }
     }
 

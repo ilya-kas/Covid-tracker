@@ -7,6 +7,7 @@ import com.itechart.covid_tracker.app_level.dagger.component.screen.DaggerSettin
 import com.itechart.covid_tracker.app_level.dagger.component.screen.ProfileScreenComponent
 import com.itechart.covid_tracker.app_level.dagger.component.screen.SettingsScreenComponent
 import com.itechart.covid_tracker.app_level.dagger.module.DBModule
+import com.itechart.covid_tracker.app_level.dagger.module.NavigationModule
 
 class App: Application() {
     override fun onCreate() {

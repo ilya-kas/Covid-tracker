@@ -17,6 +17,7 @@
 
         <activity android:name="com.itechart.covid_tracker.app_level.SplashScreenActivity"
             android:theme="@style/SplashScreenTheme"
+            android:exported="true"
             android:screenOrientation="portrait"> <!--Splash activity-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

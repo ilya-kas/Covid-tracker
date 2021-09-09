@@ -1,7 +1,12 @@
 package com.itechart.covid_tracker.app_level.dagger.module
 
+import com.itechart.covid_tracker.model.database.favorites.FavoritesProvider
+import com.itechart.covid_tracker.model.database.favorites.FavoritesRepository
 import com.itechart.covid_tracker.model.network.CovidAPI
+import com.itechart.covid_tracker.model.network.CovidApiRepository
+import com.itechart.covid_tracker.model.network.CovidStatsProvider
 import com.itechart.covid_tracker.model.network.LoggingInterceptor
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor

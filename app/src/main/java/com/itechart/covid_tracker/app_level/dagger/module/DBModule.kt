@@ -1,13 +1,20 @@
 package com.itechart.covid_tracker.app_level.dagger.module
 
 import android.content.Context
+import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
 import com.itechart.covid_tracker.app_level.dagger.App
+import com.itechart.covid_tracker.app_level.dagger.ViewModelFactory
 import com.itechart.covid_tracker.model.Model
 import com.itechart.covid_tracker.model.database.favorites.FavoritesDAO
 import com.itechart.covid_tracker.model.database.favorites.FavoritesDatabase
+import com.itechart.covid_tracker.model.database.favorites.FavoritesProvider
+import com.itechart.covid_tracker.model.database.favorites.FavoritesRepository
 import com.itechart.covid_tracker.model.database.settings.SettingsDAO
 import com.itechart.covid_tracker.model.database.settings.SettingsDatabase
+import com.itechart.covid_tracker.model.database.settings.SettingsProvider
+import com.itechart.covid_tracker.model.database.settings.SettingsRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
