@@ -10,8 +10,10 @@ import java.io.IOException
 import java.lang.Exception
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.collections.ArrayList
 
+@Singleton
 class CovidApiRepository @Inject constructor(val api: CovidAPI): CovidStatsProvider {
 
     override suspend fun loadCountries(): List<Country>{

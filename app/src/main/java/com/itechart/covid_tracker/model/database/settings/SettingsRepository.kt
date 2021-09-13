@@ -4,7 +4,9 @@ import com.itechart.covid_tracker.model.entities.Settings
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-                                              //DAO for ROOM DB access
+import javax.inject.Singleton
+
+@Singleton                                        //DAO for ROOM DB access
 class SettingsRepository @Inject constructor(var settingsDAO: SettingsDAO): SettingsProvider {
 
     override fun loadSettings(): Settings{ //favorite countries loading from DB

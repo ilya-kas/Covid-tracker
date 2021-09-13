@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.itechart.covid_tracker.app_level.dagger.ViewModelFactory
 import com.itechart.covid_tracker.app_level.dagger.annotation.ViewModelKey
+import com.itechart.covid_tracker.screens.chart.ChartViewModel
 import com.itechart.covid_tracker.screens.favorites.FavoritesViewModel
 import com.itechart.covid_tracker.screens.main.MainViewModel
 import com.itechart.covid_tracker.screens.profile.ProfileViewModel
@@ -36,4 +37,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     fun mainViewModel(viewModel: MainViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ChartViewModel::class)
+    fun chartViewModel(viewModel: ChartViewModel): ViewModel
 }

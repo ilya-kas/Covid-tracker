@@ -4,7 +4,9 @@ import com.itechart.covid_tracker.model.entities.Country
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class FavoritesRepository @Inject constructor(var favoritesDAO: FavoritesDAO): FavoritesProvider{
 
     override fun loadFavorites() = favoritesDAO.getAll()
