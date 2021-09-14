@@ -7,16 +7,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.itechart.covid_tracker.R
+import com.itechart.covid_tracker.app_level.dagger.App
 import com.itechart.covid_tracker.screens.login.LoginViewModel
+import javax.inject.Inject
 
 class LoginFragment: Fragment() {
 
     private lateinit var fragment: View
-    private lateinit var viewModel: LoginViewModel
+    @Inject
+    lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragment = inflater.inflate(R.layout.fragment_login, container, false)
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         val b_google_sign_in = fragment.findViewById<View>(R.id.b_google_sign_in)
         b_google_sign_in.setOnClickListener {
@@ -39,7 +41,9 @@ class LoginFragment: Fragment() {
 
     companion object{
         fun newInstance(): Fragment {
-            return LoginFragment()
+            val fragment = LoginFragment()
+            App.appComponent.inject(fragment)
+            return fragment
         }
     }
 }

@@ -18,7 +18,7 @@ class SettingsFragment: Fragment() {
     lateinit var viewModel: SettingsViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        App.settingsScreenComponent.injectSettingsFragment(this)
+        App.appComponent.inject(this)
 
         val binding: FragmentSettingsBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false) //data binding
@@ -31,11 +31,5 @@ class SettingsFragment: Fragment() {
         }
 
         return fragment
-    }
-
-    companion object{
-        fun newInstance(): Fragment {
-            return SettingsFragment()
-        }
     }
 }

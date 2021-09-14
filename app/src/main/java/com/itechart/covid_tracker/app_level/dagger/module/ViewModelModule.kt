@@ -6,6 +6,7 @@ import com.itechart.covid_tracker.app_level.dagger.ViewModelFactory
 import com.itechart.covid_tracker.app_level.dagger.annotation.ViewModelKey
 import com.itechart.covid_tracker.screens.chart.ChartViewModel
 import com.itechart.covid_tracker.screens.favorites.FavoritesViewModel
+import com.itechart.covid_tracker.screens.login.LoginViewModel
 import com.itechart.covid_tracker.screens.main.MainViewModel
 import com.itechart.covid_tracker.screens.profile.ProfileViewModel
 import com.itechart.covid_tracker.screens.settings.SettingsViewModel
@@ -42,4 +43,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(ChartViewModel::class)
     fun chartViewModel(viewModel: ChartViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    fun loginViewModel(viewModel: LoginViewModel): ViewModel
 }

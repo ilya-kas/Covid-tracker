@@ -1,10 +1,10 @@
 package com.itechart.covid_tracker.screens.profile
 
 import androidx.lifecycle.ViewModel
-import com.itechart.covid_tracker.app_level.dagger.App
-import com.itechart.covid_tracker.model.Model
+import com.itechart.covid_tracker.model.database.settings.SettingsProvider
+import com.itechart.covid_tracker.model.entities.User
 import javax.inject.Inject
 
-class ProfileViewModel @Inject constructor(val model: Model): ViewModel() {
-    var user = model.loadUser()
+class ProfileViewModel @Inject constructor(val settingsProvider: SettingsProvider): ViewModel() {
+    var user = User() //temporary value because there is no registration
 }

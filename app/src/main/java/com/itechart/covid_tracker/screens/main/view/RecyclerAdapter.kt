@@ -50,7 +50,7 @@ class RecyclerAdapter(private val fragment: MainFragment, private val viewModel:
         }
     }
 
-    override fun getItemCount() = (viewModel.listLength - offset* ITEM_ON_PAGE_COUNT).coerceAtMost(
+    override fun getItemCount() = (viewModel.countries.size - offset* ITEM_ON_PAGE_COUNT).coerceAtMost(
         ITEM_ON_PAGE_COUNT
     )
 
@@ -59,7 +59,7 @@ class RecyclerAdapter(private val fragment: MainFragment, private val viewModel:
      * measures: [0, MainPresenter.getListLength() / ITEM_ON_PAGE_COUNT]
      */
     fun setPage(nom: Int){
-        val newOffset = nom.coerceAtMost(viewModel.listLength / ITEM_ON_PAGE_COUNT).coerceAtLeast(0)
+        val newOffset = nom.coerceAtMost(viewModel.countries.size / ITEM_ON_PAGE_COUNT).coerceAtLeast(0)
         if (newOffset==offset) return
         offset = newOffset
         notifyDataSetChanged()

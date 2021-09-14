@@ -8,15 +8,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.lifecycle.ViewModelProvider
 import com.itechart.covid_tracker.R
+import com.itechart.covid_tracker.app_level.dagger.App
 import com.itechart.covid_tracker.screens.login.LoginViewModel
+import javax.inject.Inject
 
 class EnterFragment: Fragment() {
     private lateinit var fragment: View
-    private lateinit var viewModel: LoginViewModel
+    @Inject
+    lateinit var viewModel: LoginViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragment = inflater.inflate(R.layout.fragment_enter, container, false)
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        App.appComponent.inject(this)
 
         val b_sing_in = fragment.findViewById<Button>(R.id.b_sign_in)
         b_sing_in.setOnClickListener {
@@ -35,11 +38,5 @@ class EnterFragment: Fragment() {
         }
 
         return fragment
-    }
-
-    companion object{
-        fun newInstance(): Fragment {
-            return EnterFragment()
-        }
     }
 }

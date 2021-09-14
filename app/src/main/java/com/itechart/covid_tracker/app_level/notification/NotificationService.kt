@@ -3,14 +3,14 @@ package com.itechart.covid_tracker.app_level.notification
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-import androidx.lifecycle.ViewModelProvider
 import com.itechart.covid_tracker.app_level.dagger.App
-import com.itechart.covid_tracker.model.Model
-import com.itechart.covid_tracker.screens.settings.SettingsViewModel
+import com.itechart.covid_tracker.model.database.settings.SettingsProvider
+import javax.inject.Inject
 import kotlin.concurrent.thread
 
 class NotificationService: Service() {
-    val model = App.appComponent.getModel()//todo
+    @Inject
+    lateinit var settingsProvider: SettingsProvider
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -18,6 +18,8 @@ class NotificationService: Service() {
 
     override fun onCreate() {
         super.onCreate()
+
+        App.appComponent.inject(this)
 
         registerNotificationChannel(this)
     }
@@ -27,7 +29,7 @@ class NotificationService: Service() {
         thread {                     //shows a notification in 5 seconds
             Thread.sleep(5000)
 
-            val settings = model.settings
+            val settings = settingsProvider.loadSettings()
             if (settings.notifications)
                 showNotification(thisService)
         }

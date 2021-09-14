@@ -8,10 +8,11 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.itechart.covid_tracker.R
+import com.itechart.covid_tracker.model.entities.Country
 import com.itechart.covid_tracker.screens.favorites.FavoritesViewModel
 import com.itechart.covid_tracker.screens.main.view.MainFragment
 
-class RecyclerAdapter(private val fragment: FavoritesFragment, private val viewModel: FavoritesViewModel) : RecyclerView.Adapter<RecyclerAdapter.LineViewHolder>(), Swipable {
+class RecyclerAdapter(private val fragment: FavoritesFragment, private val elements: List<Country>) : RecyclerView.Adapter<RecyclerAdapter.LineViewHolder>(), Swipable {
 
     //on create empty line
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LineViewHolder {
@@ -24,7 +25,7 @@ class RecyclerAdapter(private val fragment: FavoritesFragment, private val viewM
 
     //filling line views
     override fun onBindViewHolder(holder: LineViewHolder, position: Int) {
-        val country = viewModel.countries[position]
+        val country = elements[position]
 
         val tv_label = holder.line.findViewById<TextView>(R.id.tv_label)
         tv_label.text = country.name
@@ -34,10 +35,10 @@ class RecyclerAdapter(private val fragment: FavoritesFragment, private val viewM
         }
     }
 
-    override fun getItemCount() = viewModel.listLength
+    override fun getItemCount() = elements.size
 
     override fun onItemDismissed(nom: Int) {
-        viewModel.removed(nom)
+        fragment.itemRemoved(nom)
         notifyItemRemoved(nom)
     }
 

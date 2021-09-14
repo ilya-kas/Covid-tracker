@@ -20,7 +20,7 @@ class ProfileFragment: Fragment() {
     lateinit var viewModel: ProfileViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        App.profileScreenComponent.injectProfileFragment(this)
+        App.appComponent.inject(this)
 
         val binding: FragmentProfileBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false) //data binding
@@ -29,11 +29,5 @@ class ProfileFragment: Fragment() {
         binding.user = viewModel.user
 
         return fragment
-    }
-
-    companion object{
-        fun newInstance(): Fragment {
-            return ProfileFragment()
-        }
     }
 }

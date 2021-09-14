@@ -26,7 +26,7 @@ class MainActivity @Inject constructor() : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_container, MainFragment.newInstance())
+            .replace(R.id.fragment_container, MainFragment())
             .commit()
     }
 }

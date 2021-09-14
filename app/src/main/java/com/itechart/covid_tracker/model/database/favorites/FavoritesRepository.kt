@@ -9,7 +9,11 @@ import javax.inject.Singleton
 @Singleton
 class FavoritesRepository @Inject constructor(var favoritesDAO: FavoritesDAO): FavoritesProvider{
 
-    override fun loadFavorites() = favoritesDAO.getAll()
+    override fun loadFavorites(countries: List<Country>){
+        val favorites = favoritesDAO.getAll()
+        for (country in favorites)
+            countries[country.id].favorite = true
+    }
 
     override fun starred(country: Country){
         GlobalScope.launch {

@@ -94,14 +94,4 @@ class ChartFragment: Fragment() {
         chart.data = lineData
         chart.invalidate()
     }
-
-    companion object{
-        fun newInstance(nom:Int): Fragment {
-            val fragment = ChartFragment()
-            fragment.arguments = Bundle().apply {
-                    putInt("nom", nom)
-            }
-            return fragment
-        }
-    }
 }

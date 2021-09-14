@@ -52,7 +52,7 @@ class FavoritesViewModelTest {
         assertNotNull(viewModel)
 
         //when
-        viewModel.removed(1)
+        viewModel.itemRemoved(1)
 
         //then
         assertEquals(1, viewModel.listLength)

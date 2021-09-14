@@ -1,21 +1,28 @@
 package com.itechart.covid_tracker.screens.main
 
 import androidx.lifecycle.ViewModel
-import com.itechart.covid_tracker.app_level.dagger.App
-import com.itechart.covid_tracker.model.Model
+import com.itechart.covid_tracker.model.database.favorites.FavoritesProvider
 import com.itechart.covid_tracker.model.entities.Country
+import com.itechart.covid_tracker.model.network.CovidStatsProvider
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
 
-class MainViewModel @Inject constructor(val model: Model): ViewModel() {
-    var countries = model.countries
-    val listLength
-        get() = countries.size
+class MainViewModel @Inject constructor(val covidStatsProvider: CovidStatsProvider, val favoritesProvider: FavoritesProvider): ViewModel() {
+    var countries:List<Country> = ArrayList()
     private var lastFilter = ""
 
     fun starred(nom: Int){
         countries[nom].favorite = !countries[nom].favorite
+        favoritesProvider.starred(countries[nom])
+    }
+
+    fun loadCountries(){
+        GlobalScope.launch {
+            countries = covidStatsProvider.loadCountries()
+        }
     }
 
     /**
@@ -23,7 +30,7 @@ class MainViewModel @Inject constructor(val model: Model): ViewModel() {
      */
     fun filter(filter: String){
         if (filter.length < lastFilter.length)
-            countries = model.countries
+            countries = covidStatsProvider.countries
 
         val tmp = ArrayList<Country>()
         for (x in countries) {

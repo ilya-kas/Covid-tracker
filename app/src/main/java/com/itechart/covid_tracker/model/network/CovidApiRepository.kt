@@ -15,30 +15,32 @@ import kotlin.collections.ArrayList
 
 @Singleton
 class CovidApiRepository @Inject constructor(val api: CovidAPI): CovidStatsProvider {
+    override val countries = ArrayList<Country>()
+    private var days: List<Day> = ArrayList()
+    private var loadedDayNom = -1
 
     override suspend fun loadCountries(): List<Country>{
-        val result = ArrayList<Country>()
-
+        countries.clear()
         try {
             val response = api.getCountiesList().awaitResponse()
             if (response.isSuccessful) {
                 val countriesList = response.body()
 
                 for ((i, x) in countriesList!!.response.withIndex())
-                    result += Country(i, x, false, null)
+                    countries += Country(i, x, false, null)
             }
         } catch (e: IOException) {
             Log.e("Network", e.toString())
         } catch (e: HttpException){
             Log.e("Network", e.toString())
         }
-        return result
+        return countries
     }
 
-    override suspend fun loadDays(country: Country):List<Day>{
+    override suspend fun preloadDays(nom: Int){
         val list = LinkedList<Day>()
         try {
-            val response = api.getCountyStat(country.name).awaitResponse()
+            val response = api.getCountyStat(countries[nom].name).awaitResponse()
             if (response.isSuccessful) {
                 val countryStatistics = response.body()
 
@@ -56,7 +58,14 @@ class CovidApiRepository @Inject constructor(val api: CovidAPI): CovidStatsProvi
             Log.e("Network", e.toString())
         }
 
-        country.daysInfo = list
-        return list
+        countries[nom].daysInfo = list
+        loadedDayNom = nom
+        days = list
+    }
+
+    override fun loadDays(nom: Int): List<Day> {
+        if (nom != loadedDayNom) //impossible state
+            return ArrayList()
+        return days
     }
 }
