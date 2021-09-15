@@ -15,7 +15,7 @@ import kotlin.collections.ArrayList
 
 @Singleton
 class CovidApiRepository @Inject constructor(val api: CovidAPI): CovidStatsProvider {
-    override val countries = ArrayList<Country>()
+    val countries = ArrayList<Country>()
     private var days: List<Day> = ArrayList()
     private var loadedDayNom = -1
 

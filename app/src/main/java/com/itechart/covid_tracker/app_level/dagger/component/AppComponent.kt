@@ -2,6 +2,7 @@ package com.itechart.covid_tracker.app_level.dagger.component
 
 import android.content.Context
 import androidx.navigation.NavController
+import com.itechart.covid_tracker.app_level.MenuController
 import com.itechart.covid_tracker.app_level.SplashScreenActivity
 import com.itechart.covid_tracker.app_level.dagger.module.*
 import com.itechart.covid_tracker.app_level.notification.NotificationService
@@ -18,7 +19,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [DBModule::class, APIModule::class, BindModule::class, NavigationModule::class, AppModule::class])
+@Component(modules = [DBModule::class, APIModule::class, BindModule::class, AppModule::class])
 interface AppComponent {
     fun getNavigation(): NavController
     fun getContext(): Context
@@ -35,4 +36,5 @@ interface AppComponent {
 
     fun inject(worker: UpdateWorker)
     fun inject(service: NotificationService)
+    fun inject(controller: MenuController)
 }

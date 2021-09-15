@@ -12,7 +12,7 @@ import com.itechart.covid_tracker.model.entities.Country
 import com.itechart.covid_tracker.screens.favorites.FavoritesViewModel
 import com.itechart.covid_tracker.screens.main.view.MainFragment
 
-class RecyclerAdapter(private val fragment: FavoritesFragment, private val elements: List<Country>) : RecyclerView.Adapter<RecyclerAdapter.LineViewHolder>(), Swipable {
+class RecyclerAdapter(private val fragment: FavoritesFragment, private val elements: MutableList<Country>) : RecyclerView.Adapter<RecyclerAdapter.LineViewHolder>(), Swipable {
 
     //on create empty line
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LineViewHolder {
@@ -39,6 +39,7 @@ class RecyclerAdapter(private val fragment: FavoritesFragment, private val eleme
 
     override fun onItemDismissed(nom: Int) {
         fragment.itemRemoved(nom)
+        elements.removeAt(nom)
         notifyItemRemoved(nom)
     }
 

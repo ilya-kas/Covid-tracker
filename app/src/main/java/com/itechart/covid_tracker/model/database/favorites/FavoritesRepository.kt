@@ -3,16 +3,19 @@ package com.itechart.covid_tracker.model.database.favorites
 import com.itechart.covid_tracker.model.entities.Country
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class FavoritesRepository @Inject constructor(var favoritesDAO: FavoritesDAO): FavoritesProvider{
 
-    override fun loadFavorites(countries: List<Country>){
+    override fun getFavorites(): List<Country> {
         val favorites = favoritesDAO.getAll()
+        val result = LinkedList<Country>()
         for (country in favorites)
-            countries[country.id].favorite = true
+            result += Country(country.id, country.name, country.favorite, null)
+        return result
     }
 
     override fun starred(country: Country){

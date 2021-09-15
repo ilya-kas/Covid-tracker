@@ -5,12 +5,13 @@ import android.content.Intent
 import android.os.IBinder
 import com.itechart.covid_tracker.app_level.dagger.App
 import com.itechart.covid_tracker.model.database.settings.SettingsProvider
+import com.itechart.covid_tracker.screens.settings.SettingsViewModel
 import javax.inject.Inject
 import kotlin.concurrent.thread
 
 class NotificationService: Service() {
     @Inject
-    lateinit var settingsProvider: SettingsProvider
+    lateinit var settingsViewModel: SettingsViewModel
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -29,7 +30,7 @@ class NotificationService: Service() {
         thread {                     //shows a notification in 5 seconds
             Thread.sleep(5000)
 
-            val settings = settingsProvider.loadSettings()
+            val settings = settingsViewModel.settings
             if (settings.notifications)
                 showNotification(thisService)
         }

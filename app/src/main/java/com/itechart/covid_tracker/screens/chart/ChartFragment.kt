@@ -34,6 +34,7 @@ class ChartFragment: Fragment() {
         arguments?.let {
             viewModel.number = it.getInt("position")
         }
+        viewModel.updateDays()
 
         //adding workManager for stats data updating
         val updateRequest = PeriodicWorkRequestBuilder<UpdateWorker>(1, TimeUnit.MINUTES)

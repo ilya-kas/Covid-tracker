@@ -6,15 +6,18 @@ import com.itechart.covid_tracker.model.entities.Settings
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class SettingsViewModel @Inject constructor(val settingsProvider: SettingsProvider): ViewModel() {
+@Singleton //not to be connected to activity's lifecycle
+class SettingsViewModel @Inject constructor(private val settingsProvider: SettingsProvider): ViewModel() {
 
     var settings = Settings(true)
 
-    fun loadSettings(){
-        GlobalScope.launch {
-            settings = settingsProvider.loadSettings()
-        }
+    /**
+     * suspend is to force use this method in coroutine
+     */
+    suspend fun loadSettings(){
+        settings = settingsProvider.loadSettings()
     }
 
     fun setNotificationsState(isChecked: Boolean){

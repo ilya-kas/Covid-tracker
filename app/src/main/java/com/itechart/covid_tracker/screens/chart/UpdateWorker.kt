@@ -5,6 +5,7 @@ import android.os.Handler
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.itechart.covid_tracker.app_level.dagger.App
+import com.itechart.covid_tracker.model.FilledCountriesProvider
 import com.itechart.covid_tracker.model.network.CovidStatsProvider
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -14,13 +15,13 @@ class UpdateWorker(appContext: Context, workerParams: WorkerParameters): Worker(
     @Inject
     lateinit var viewModel: ChartViewModel
     @Inject
-    lateinit var covidStatsProvider: CovidStatsProvider
+    lateinit var filledCountriesProvider: FilledCountriesProvider
 
     override fun doWork(): Result {
         App.appComponent.inject(this)
 
         GlobalScope.launch {
-            val daysStats = covidStatsProvider.loadDays(viewModel.number)
+            val daysStats = filledCountriesProvider.loadDays(viewModel.number)
 
             val mainHandler = Handler(applicationContext.mainLooper)
             mainHandler.post {

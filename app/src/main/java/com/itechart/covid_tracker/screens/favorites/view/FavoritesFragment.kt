@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.itechart.covid_tracker.R
 import com.itechart.covid_tracker.app_level.dagger.App
+import com.itechart.covid_tracker.model.entities.Country
 import com.itechart.covid_tracker.model.network.CovidStatsProvider
 import com.itechart.covid_tracker.screens.chart.ChartFragment
 import com.itechart.covid_tracker.screens.favorites.FavoritesViewModel
@@ -31,7 +32,7 @@ class FavoritesFragment: Fragment() {
 
         val recyclerView = fragment.findViewById<RecyclerView>(R.id.rv_countries)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = RecyclerAdapter(this, viewModel.countries)
+        recyclerView.adapter = RecyclerAdapter(this, viewModel.countries as MutableList<Country>)
 
         val mItemTouchHelper = ItemTouchHelper(ListTouchAdapter(recyclerView.adapter as RecyclerAdapter))
         mItemTouchHelper.attachToRecyclerView(recyclerView)
