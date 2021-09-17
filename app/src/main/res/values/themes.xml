@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.MyTheme" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/alt</item>
-        <item name="colorPrimaryVariant">@color/alt</item>
-        <item name="colorOnPrimary">@color/alt</item>
+        <item name="colorPrimary">@color/text</item>
+        <item name="colorPrimaryVariant">@color/text</item>
+        <item name="colorOnPrimary">@color/text</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/main</item>
         <item name="colorSecondaryVariant">@color/main</item>

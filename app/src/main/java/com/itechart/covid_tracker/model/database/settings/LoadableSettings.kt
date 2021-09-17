@@ -9,7 +9,8 @@ import com.itechart.covid_tracker.model.entities.Settings
 data class LoadableSettings (
         @PrimaryKey(autoGenerate = true)
         var id: Int,
-        var notifications: Boolean
+        var notifications: Boolean,
+        var firstLaunch: Boolean
 ){
-        constructor(settings: Settings) : this(0, settings.notifications)
+        constructor(settings: Settings) : this(0, settings.notifications, settings.firstLaunch)
 }

@@ -12,10 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyTheme">
-        <activity android:name="com.itechart.covid_tracker.app_level.MainActivity"
+        <activity android:name="com.itechart.covid_tracker.app_level.activity.MainActivity"
             android:screenOrientation="portrait"/> <!--Main activity-->
 
-        <activity android:name="com.itechart.covid_tracker.app_level.SplashScreenActivity"
+        <activity android:name=".app_level.activity.OnBoardingActivity"
+            android:screenOrientation="portrait"/> <!--Main activity-->
+
+        <activity android:name="com.itechart.covid_tracker.app_level.activity.SplashScreenActivity"
             android:theme="@style/SplashScreenTheme"
             android:exported="true"
             android:screenOrientation="portrait"> <!--Splash activity-->

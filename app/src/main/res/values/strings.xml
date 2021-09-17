@@ -15,4 +15,10 @@
     <string name="password">Password:</string>
     <string name="web_client_id">761808370590-vkop617h4bmpt57f2ej8c8athpc3rsuh.apps.googleusercontent.com</string>
     <string name="app_client_id">761808370590-o44snlig81l979omcvrerkdj46fb77nu.apps.googleusercontent.com</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="skip">skip</string>
+    <string name="hello">Hello</string>
+    <string name="intro_text">Covid-19 is a serious issue nowadays. We all must take care about our health to make the pandemic over.</string>
+    <string name="intro_last">This app provides you actual covid-19 disease statistics. You can add countries to favorites to be able to navigate to them quickly.</string>
 </resources>

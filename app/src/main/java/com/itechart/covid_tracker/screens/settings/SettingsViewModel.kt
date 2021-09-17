@@ -11,13 +11,17 @@ import javax.inject.Singleton
 @Singleton //not to be connected to activity's lifecycle
 class SettingsViewModel @Inject constructor(private val settingsProvider: SettingsProvider): ViewModel() {
 
-    var settings = Settings(true)
+    var settings = Settings(true, true)
 
     /**
      * suspend is to force use this method in coroutine
      */
     suspend fun loadSettings(){
         settings = settingsProvider.loadSettings()
+    }
+
+    fun saveSettings(){
+        settingsProvider.save(settings)
     }
 
     fun setNotificationsState(isChecked: Boolean){

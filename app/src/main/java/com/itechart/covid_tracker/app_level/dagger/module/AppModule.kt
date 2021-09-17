@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.itechart.covid_tracker.R
-import com.itechart.covid_tracker.app_level.MainActivity
+import com.itechart.covid_tracker.app_level.activity.MainActivity
 import dagger.Module
 import dagger.Provides
 

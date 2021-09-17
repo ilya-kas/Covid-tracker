@@ -5,6 +5,7 @@ import androidx.core.view.get
 import androidx.navigation.NavController
 import com.google.android.material.navigationrail.NavigationRailView
 import com.itechart.covid_tracker.R
+import com.itechart.covid_tracker.app_level.activity.MainActivity
 import com.itechart.covid_tracker.app_level.dagger.App
 import com.itechart.covid_tracker.model.database.favorites.FavoritesProvider
 import com.itechart.covid_tracker.model.network.CovidStatsProvider

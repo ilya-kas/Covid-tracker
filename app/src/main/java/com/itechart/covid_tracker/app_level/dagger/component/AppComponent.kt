@@ -3,7 +3,9 @@ package com.itechart.covid_tracker.app_level.dagger.component
 import android.content.Context
 import androidx.navigation.NavController
 import com.itechart.covid_tracker.app_level.MenuController
-import com.itechart.covid_tracker.app_level.SplashScreenActivity
+import com.itechart.covid_tracker.app_level.activity.MainActivity
+import com.itechart.covid_tracker.app_level.activity.OnBoardingActivity
+import com.itechart.covid_tracker.app_level.activity.SplashScreenActivity
 import com.itechart.covid_tracker.app_level.dagger.module.*
 import com.itechart.covid_tracker.app_level.notification.NotificationService
 import com.itechart.covid_tracker.screens.chart.ChartFragment
@@ -25,6 +27,8 @@ interface AppComponent {
     fun getContext(): Context
 
     fun inject(activity: SplashScreenActivity)
+    fun inject(activity: OnBoardingActivity)
+    fun inject(activity: MainActivity)
     fun inject(fragment: MainFragment)
     fun inject(fragment: FavoritesFragment)
     fun inject(fragment: ChartFragment)

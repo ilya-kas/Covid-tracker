@@ -12,8 +12,8 @@ class SettingsRepository @Inject constructor(var settingsDAO: SettingsDAO): Sett
     override fun loadSettings(): Settings{ //favorite countries loading from DB
         val loadableSettings = settingsDAO.getSettings()
         if (loadableSettings.isEmpty())
-            return Settings(true)
-        return Settings(loadableSettings.last().notifications)
+            return Settings(true, true)
+        return Settings(loadableSettings.last().notifications, loadableSettings.last().firstLaunch)
     }
 
     override fun save(settings: Settings){

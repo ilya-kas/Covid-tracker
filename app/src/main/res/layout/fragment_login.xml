@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/login"
                 android:textSize="25sp"
-                android:textColor="@color/alt"/>
+                android:textColor="@color/text"/>
 
             <EditText
                 android:layout_width="150dp"
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/password"
                 android:textSize="25sp"
-                android:textColor="@color/alt"/>
+                android:textColor="@color/text"/>
 
             <EditText
                 android:layout_width="150dp"

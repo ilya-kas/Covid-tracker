@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:text="Register"
                 android:textSize="25sp"
-                android:textColor="@color/alt"/>
+                android:textColor="@color/text"/>
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
