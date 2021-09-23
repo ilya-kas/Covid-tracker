@@ -2,7 +2,6 @@ package com.itechart.covid_tracker.screens.main.view
 
 import android.os.Bundle
 import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
@@ -12,21 +11,28 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.FirebaseApp
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import com.itechart.covid_tracker.R
 import com.itechart.covid_tracker.app_level.dagger.App
-import com.itechart.covid_tracker.app_level.dagger.module.storedActivity
 import com.itechart.covid_tracker.model.network.CovidStatsProvider
 import com.itechart.covid_tracker.screens.main.MainViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.lang.RuntimeException
 import javax.inject.Inject
 import kotlin.math.ceil
 
 class MainFragment: Fragment() {
     private lateinit var fragment:View
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     @Inject
     lateinit var viewModel: MainViewModel
@@ -36,6 +42,7 @@ class MainFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragment = inflater.inflate(R.layout.fragment_main, container, false)
         App.appComponent.inject(this)
+        firebaseAnalytics = Firebase.analytics
 
         val recyclerView = fragment.findViewById<RecyclerView>(R.id.rv_countries)
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -99,6 +106,10 @@ class MainFragment: Fragment() {
     }
 
     fun lineItemPressed(realPosition:Int){
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM, bundleOf(
+            Pair(FirebaseAnalytics.Param.ITEM_ID, realPosition),
+            Pair(FirebaseAnalytics.Param.ITEM_NAME, viewModel.countries[realPosition].name)
+        ))
         GlobalScope.launch {
             covidStatsProvider.preloadDays(realPosition)
             val navigation = App.appComponent.getNavigation()
