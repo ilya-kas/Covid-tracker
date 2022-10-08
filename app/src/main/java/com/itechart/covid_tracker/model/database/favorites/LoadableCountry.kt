@@ -2,7 +2,7 @@ package com.itechart.covid_tracker.model.database.favorites
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.itechart.covid_tracker.model.entities.Country
+import com.itechart.covid_tracker.logic.entity.Country
 
 @Entity(tableName = "favorites")
 data class LoadableCountry (

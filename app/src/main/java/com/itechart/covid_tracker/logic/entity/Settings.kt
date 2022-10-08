@@ -1,4 +1,4 @@
-package com.itechart.covid_tracker.model.entities
+package com.itechart.covid_tracker.logic.entity
 
 /**
  * settings snapshot

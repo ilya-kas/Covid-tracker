@@ -1,6 +1,6 @@
 package com.itechart.covid_tracker.model.database.settings
 
-import com.itechart.covid_tracker.model.entities.Settings
+import com.itechart.covid_tracker.logic.entity.Settings
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject

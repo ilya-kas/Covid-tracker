@@ -2,14 +2,9 @@ package com.itechart.covid_tracker.screens.main
 
 import androidx.lifecycle.ViewModel
 import com.itechart.covid_tracker.model.FilledCountriesProvider
-import com.itechart.covid_tracker.model.database.favorites.FavoritesProvider
-import com.itechart.covid_tracker.model.entities.Country
-import com.itechart.covid_tracker.model.network.CovidStatsProvider
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.itechart.covid_tracker.logic.entity.Country
 import java.util.*
 import javax.inject.Inject
-import javax.inject.Singleton
 import kotlin.collections.ArrayList
 
 class MainViewModel @Inject constructor(private val filledCountriesProvider: FilledCountriesProvider): ViewModel() {

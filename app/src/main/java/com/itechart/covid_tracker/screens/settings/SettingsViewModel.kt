@@ -2,9 +2,7 @@ package com.itechart.covid_tracker.screens.settings
 
 import androidx.lifecycle.ViewModel
 import com.itechart.covid_tracker.model.database.settings.SettingsProvider
-import com.itechart.covid_tracker.model.entities.Settings
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.itechart.covid_tracker.logic.entity.Settings
 import javax.inject.Inject
 import javax.inject.Singleton
 

@@ -11,9 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.itechart.covid_tracker.R
 import com.itechart.covid_tracker.app_level.dagger.App
-import com.itechart.covid_tracker.model.entities.Country
+import com.itechart.covid_tracker.logic.entity.Country
 import com.itechart.covid_tracker.model.network.CovidStatsProvider
-import com.itechart.covid_tracker.screens.chart.ChartFragment
 import com.itechart.covid_tracker.screens.favorites.FavoritesViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

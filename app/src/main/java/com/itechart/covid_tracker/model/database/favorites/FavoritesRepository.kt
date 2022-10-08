@@ -1,6 +1,6 @@
 package com.itechart.covid_tracker.model.database.favorites
 
-import com.itechart.covid_tracker.model.entities.Country
+import com.itechart.covid_tracker.logic.entity.Country
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/BodyStyle"
-    tools:context="com.itechart.covid_tracker.screens.login.view.LoginFragment">
+    tools:context="com.itechart.covid_tracker.screens.login.view.LoginFragment"
+    android:clickable="true">
 
     <!--Enter fields-->
     <com.google.android.material.card.MaterialCardView
@@ -29,6 +30,7 @@
                 android:textColor="@color/text"/>
 
             <EditText
+                android:id="@+id/et_login"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -42,6 +44,7 @@
                 android:textColor="@color/text"/>
 
             <EditText
+                android:id="@+id/et_password"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -55,11 +58,6 @@
                 android:text="@string/sign_in"
                 android:textColor="@color/black"
                 android:textSize="25sp"/>
-
-            <com.google.android.gms.common.SignInButton
-                android:id="@+id/b_google_sign_in"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </FrameLayout>

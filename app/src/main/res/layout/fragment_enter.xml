@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/BodyStyle"
-    tools:context="com.itechart.covid_tracker.screens.login.view.EnterFragment">
+    tools:context="com.itechart.covid_tracker.screens.login.view.EnterFragment"
+    android:clickable="true">
 
     <!--User info-->
     <com.google.android.material.card.MaterialCardView

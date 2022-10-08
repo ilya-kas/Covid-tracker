@@ -8,9 +8,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.itechart.covid_tracker.R
-import com.itechart.covid_tracker.model.entities.Country
-import com.itechart.covid_tracker.screens.favorites.FavoritesViewModel
-import com.itechart.covid_tracker.screens.main.view.MainFragment
+import com.itechart.covid_tracker.logic.entity.Country
 
 class RecyclerAdapter(private val fragment: FavoritesFragment, private val elements: MutableList<Country>) : RecyclerView.Adapter<RecyclerAdapter.LineViewHolder>(), Swipable {
 

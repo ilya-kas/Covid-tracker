@@ -1,9 +1,8 @@
 package com.itechart.covid_tracker.model.network
 
 import android.util.Log
-import androidx.annotation.Keep
-import com.itechart.covid_tracker.model.entities.Country
-import com.itechart.covid_tracker.model.entities.Day
+import com.itechart.covid_tracker.logic.entity.Country
+import com.itechart.covid_tracker.logic.entity.Day
 import retrofit2.HttpException
 import retrofit2.awaitResponse
 import java.io.IOException
@@ -63,7 +62,7 @@ class CovidApiRepository @Inject constructor(val api: CovidAPI): CovidStatsProvi
         days = list
     }
 
-    override fun loadDays(nom: Int): List<Day> {
+    override suspend fun loadDays(nom: Int): List<Day> {
         if (nom != loadedDayNom) //impossible state
             return ArrayList()
         return days

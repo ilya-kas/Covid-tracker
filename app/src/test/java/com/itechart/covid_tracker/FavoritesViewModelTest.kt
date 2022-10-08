@@ -4,7 +4,7 @@ import android.content.Context
 import com.itechart.covid_tracker.app_level.dagger.App
 import com.itechart.covid_tracker.di.component.DaggerTestAppComponent
 import com.itechart.covid_tracker.di.module.TestDBModule
-import com.itechart.covid_tracker.model.entities.Country
+import com.itechart.covid_tracker.logic.entity.Country
 import com.itechart.covid_tracker.screens.favorites.FavoritesViewModel
 import io.mockk.mockkClass
 import junit.framework.Assert.assertEquals

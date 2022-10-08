@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true">
 
     <data>
         <variable
             name="user"
-            type="com.itechart.covid_tracker.model.entities.User" />
+            type="com.itechart.covid_tracker.logic.entity.User" />
     </data>
 
     <LinearLayout

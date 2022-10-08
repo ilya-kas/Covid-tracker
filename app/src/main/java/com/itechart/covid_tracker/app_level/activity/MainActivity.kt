@@ -2,14 +2,9 @@ package com.itechart.covid_tracker.app_level.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.analytics.ktx.analytics
-import com.google.firebase.ktx.Firebase
 import com.itechart.covid_tracker.R
 import com.itechart.covid_tracker.app_level.MenuController
 import com.itechart.covid_tracker.app_level.dagger.App
